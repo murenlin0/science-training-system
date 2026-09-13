@@ -54,7 +54,11 @@ python -m pytest tests -q
 | `templates/` | 課表／日誌骨架 |
 | `user/` | 你的真資料（不上傳） |
 
-改 `config/volume_weights.yaml` 之後，下一則訓練回覆的權重列和組數會跟著變。
+改 `config/volume_weights.yaml` 之後，下一則訓練回覆的權重列和組數會跟著變。只想本機自訂、不送 PR：可放 `user/volume_weights.yaml`（格式同檔、須含 `movements`），見 `CONTRIBUTING.md`。
+
+## 貢獻動作與權重
+
+**歡迎 PR 新增 `config/volume_weights.yaml` 裡的動作與肌群權重**（直接 ≈1.0、協同 ≈0.5；更細小數請標教練粗估）。沒列到的動作不計容量——不要瞎猜。肌群名須對齊 `config/volume_landmarks.yaml`。步驟與檢查清單見 **[CONTRIBUTING.md](CONTRIBUTING.md)**。
 
 ## 授權
 

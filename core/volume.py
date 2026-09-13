@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -13,11 +14,46 @@ _WEIGHTS = None
 DOT = {"below": "⚪", "mev": "🟢", "mav": "🔵", "mrv": "🟠", "over": "🔴"}
 
 
+def reset_cache() -> None:
+    global _MARK, _WEIGHTS
+    _MARK = None
+    _WEIGHTS = None
+
+
+def _read_yaml(path: Path) -> Any:
+    return yaml.safe_load(path.read_text(encoding="utf-8"))
+
+
+def _valid_landmarks(data: Any) -> bool:
+    return isinstance(data, dict) and "header" in data and "muscles" in data
+
+
+def _valid_weights(data: Any) -> bool:
+    return isinstance(data, dict) and "movements" in data
+
+
 def _load():
     global _MARK, _WEIGHTS
     if _MARK is None:
-        _MARK = yaml.safe_load((_DIR / "config" / "volume_landmarks.yaml").read_text(encoding="utf-8"))
-        _WEIGHTS = yaml.safe_load((_DIR / "config" / "volume_weights.yaml").read_text(encoding="utf-8"))
+        cfg_lm = _DIR / "config" / "volume_landmarks.yaml"
+        cfg_w = _DIR / "config" / "volume_weights.yaml"
+        user_lm = _DIR / "user" / "volume_landmarks.yaml"
+        user_w = _DIR / "user" / "volume_weights.yaml"
+
+        mark_data = _read_yaml(cfg_lm)
+        if user_lm.is_file():
+            overlay = _read_yaml(user_lm)
+            if _valid_landmarks(overlay):
+                mark_data = overlay
+
+        weight_data = _read_yaml(cfg_w)
+        if user_w.is_file():
+            overlay = _read_yaml(user_w)
+            if _valid_weights(overlay):
+                weight_data = overlay
+
+        _MARK = mark_data
+        _WEIGHTS = weight_data
     return _MARK, _WEIGHTS
 
 
@@ -32,6 +68,8 @@ def add_sets(bucket: dict[str, float], key: str, n: float) -> None:
 
 
 def band(muscle: str, weekly: float) -> str:
+    if weekly <= 0:
+        return "below"
     spec = _load()[0]["muscles"][muscle]
     mev0, mav0, mrv0, mrv1 = spec["mev"][0], spec["mav"][0], spec["mrv"][0], spec["mrv"][1]
     if weekly < mev0:

@@ -1,7 +1,13 @@
 """Volume 燈號與當日表。landmarks 不當門。"""
 
+from pathlib import Path
+
+import yaml
+
 from core.session_log import format_day, format_lift, tally_week
-from core.volume import add_sets, band, format_landmarks, weights_for
+from core.volume import add_sets, band, format_landmarks, reset_cache, weights_for
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_planche_weights_match_brief():
@@ -23,6 +29,61 @@ def test_zero_is_below_and_listed():
     assert "不當擋門" in text.splitlines()[1]
     assert "背闊" in text and "0/0⚪" in text
     assert band("背闊", 0) == "below"
+
+
+def test_zero_weekly_below_even_when_mev_floor_is_zero():
+    assert band("臀", 0) == "below"
+    assert band("腹", 0) == "below"
+
+
+def test_new_movement_weights_load():
+    assert weights_for("barbell_row") == [("上背", 1.0), ("後三角", 0.5), ("二頭", 0.3)]
+    assert weights_for("planche_lean") == [("前三角", 1.0), ("二頭", 0.5)]
+
+
+def _seed_volume_config(base: Path) -> None:
+    cfg = base / "config"
+    cfg.mkdir(parents=True)
+    (cfg / "volume_landmarks.yaml").write_text(
+        (ROOT / "config" / "volume_landmarks.yaml").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (cfg / "volume_weights.yaml").write_text(
+        (ROOT / "config" / "volume_weights.yaml").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+
+
+def test_user_weights_overlay_when_valid(tmp_path, monkeypatch):
+    _seed_volume_config(tmp_path)
+    user_dir = tmp_path / "user"
+    user_dir.mkdir()
+    (user_dir / "volume_weights.yaml").write_text(
+        yaml.dump({"movements": {"custom_only": [{"m": "胸", "w": 1.0}]}}, allow_unicode=True),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr("core.volume._DIR", tmp_path)
+    reset_cache()
+    try:
+        assert weights_for("custom_only") == [("胸", 1.0)]
+        assert weights_for("ohp") == []
+    finally:
+        reset_cache()
+        monkeypatch.setattr("core.volume._DIR", ROOT)
+
+
+def test_user_weights_invalid_overlay_falls_back_to_config(tmp_path, monkeypatch):
+    _seed_volume_config(tmp_path)
+    user_dir = tmp_path / "user"
+    user_dir.mkdir()
+    (user_dir / "volume_weights.yaml").write_text("default_direct: 1.0\n", encoding="utf-8")
+    monkeypatch.setattr("core.volume._DIR", tmp_path)
+    reset_cache()
+    try:
+        assert weights_for("ohp") == [("前三角", 1.0), ("三頭", 0.5)]
+    finally:
+        reset_cache()
+        monkeypatch.setattr("core.volume._DIR", ROOT)
 
 
 def test_six_front_delt_is_mev_green():
