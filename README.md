@@ -58,7 +58,7 @@ python -m pytest tests -q
 
 ## 貢獻動作與權重
 
-**歡迎 PR 新增 `config/volume_weights.yaml` 裡的動作與肌群權重**（直接 ≈1.0、協同 ≈0.5；更細小數請標教練粗估）。沒列到的動作不計容量——不要瞎猜。肌群名須對齊 `config/volume_landmarks.yaml`。步驟與檢查清單見 **[CONTRIBUTING.md](CONTRIBUTING.md)**。
+**歡迎 GitHub PR 新增 `config/volume_weights.yaml` 裡的動作與肌群權重**（與「估 PR／1RM」無關）（直接 ≈1.0、協同 ≈0.5；更細小數請標教練粗估）。沒列到的動作不計容量——不要瞎猜。肌群名須對齊 `config/volume_landmarks.yaml`。步驟與檢查清單見 **[CONTRIBUTING.md](CONTRIBUTING.md)**。
 
 ## 授權
 

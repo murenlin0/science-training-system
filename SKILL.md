@@ -24,6 +24,7 @@ version: 0.3.2
 | 算重量／掛重／等長秒 | `core/load.py`（禁止手算類型 B） |
 | 選完主項要輔助 | `config/assistance.yaml` → `core/assistance.py` |
 | 肌群容量審計 | `core/volume.py`（只接訓練回覆，不當門） |
+| 想加動作／肌群權重進共用預設 | `CONTRIBUTING.md` → 改 `config/volume_weights.yaml` 送 **GitHub PR**（不是估 1RM 的 PR） |
 
 ## 強制（L0 + L1）
 

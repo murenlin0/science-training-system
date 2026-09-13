@@ -1,5 +1,7 @@
 # 貢獻指南（Contributing）
 
+> **PR** 在此指 **GitHub Pull Request**（送 patch 合進倉庫），不是課表裡的 personal record／1RM（那條流程在 `workflows/estimate-pr.md`）。
+
 歡迎 PR，尤其是**新增動作與肌群 fractional 權重**——這讓容量審計能覆蓋更多訓練，而不會把 MEV／MAV／MRV 變成合格門檻。
 
 ## 動作權重：`config/volume_weights.yaml`
@@ -31,6 +33,16 @@ movements:
 若只想自己改、不進共用預設，可放 **`user/volume_weights.yaml`**（已 gitignore），**同一 schema**，且必須含 top-level **`movements`**。程式只在檔案存在且 schema 有效時採用；否則用 `config/`。
 
 Landmarks 同理：`user/volume_landmarks.yaml` 需含 **`header`** 與 **`muscles`** 才會覆寫 `config/volume_landmarks.yaml`。
+
+### PR 描述範本（可貼在 GitHub PR 裡改）
+
+```
+新增動作：reverse_fly（反向飛鳥）
+
+- config/volume_weights.yaml：後三角 1.0、上背 0.3（直接／協同對齊 Pelland 預設）
+- key 與 session 登錄一致；肌群名來自 volume_landmarks.yaml
+- pytest tests/test_volume.py -q 通過
+```
 
 ### PR 檢查清單（範例）
 
