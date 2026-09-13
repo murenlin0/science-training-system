@@ -1,7 +1,7 @@
 ---
 name: science-training-system
 description: 科學力量訓練——先問主項，再按四層規則排課。選完主項只讀該 key 的輔助對照表。類型 B 百分比打在總系統負荷。無預設動作組。
-version: 0.3.1
+version: 0.3.2
 ---
 
 # Science-training-system

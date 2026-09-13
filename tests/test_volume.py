@@ -82,3 +82,42 @@ def test_format_day_includes_volume_header():
     text = format_day(data, 1, just=("ohp", 0))
     assert "肌肥大地板" in text
     assert "肩推" in text
+
+
+def test_html_roundtrip_keeps_sets(tmp_path):
+    from core.session_log import load_session, parse_session, render_session, save_session
+
+    data = {
+        "week_label": "第1周",
+        "opened_on": "2026-09-13",
+        "days": [{
+            "n": 1,
+            "lifts": [{
+                "key": "ohp",
+                "name": "肩推",
+                "sets": [
+                    {"goal": "35×5 @8", "done": "35×5 @8", "mark": "ok"},
+                    {"goal": "32.5×5 @7", "done": None, "mark": "wait"},
+                ],
+                "last_week": ["30×5", None],
+            }],
+        }],
+    }
+    back = parse_session(render_session(data))
+    lift = back["days"][0]["lifts"][0]
+    assert back["week_label"] == "第1周"
+    assert back["opened_on"] == "2026-09-13"
+    assert lift["sets"][0] == {"goal": "35×5 @8", "done": "35×5 @8", "mark": "ok"}
+    assert lift["sets"][1]["done"] is None
+    assert lift["last_week"][0] == "30×5"
+    html_p = tmp_path / "session.html"
+    save_session(html_p, data)
+    assert load_session(html_p)["days"][0]["lifts"][0]["key"] == "ohp"
+
+
+def test_yaml_only_still_loads(tmp_path):
+    from core.session_log import load_session
+
+    p = tmp_path / "session.yaml"
+    p.write_text("week_label: 舊檔\ndays:\n- n: 1\n  lifts: []\n", encoding="utf-8")
+    assert load_session(p)["week_label"] == "舊檔"

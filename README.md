@@ -8,7 +8,7 @@
 
 把整個資料夾放到你使用的 AI 助理的 skills／專案路徑，讓它能讀到根目錄的 `SKILL.md`。只把網址傳給機器人，通常**不會**自動裝好，還是要本機收一次檔。
 
-選手真實姓名、課表、日誌放 `user/`（已 gitignore）。倉庫裡的 `athlete_profile.example.yaml` 和 `templates/session.example.yaml` 是空模板。只有你說「用存檔」時，助理才讀 `user/`。
+選手真實姓名、課表、日誌放 `user/`（已 gitignore）。倉庫裡的 `athlete_profile.example.yaml` 和 `templates/session.example.html` 是空模板。只有你說「用存檔」時，助理才讀 `user/`。當日真源是 `user/session.html`，對話裡的表只是渲染。
 
 ```
 pip install pyyaml pytest
@@ -26,7 +26,7 @@ python -m pytest tests -q
 | 容量太大／想換動作 | 每次只改一兩件事，優先砍輔助。 |
 | 為什麼／該不該 | 只答原理，不自動出表。 |
 | 只要有氧／GPP | 用實測心率算區間，不用 220 減年齡。有力量課表時，體能填剩餘預算，不反向改主項。 |
-| 開練、回報一組、下一組 | 只改今天剩下的。每組立刻寫進 `user/session.yaml`，並在對話裡貼完整紀錄，不要等你點頭、也不要靠附件。 |
+| 開練、回報一組、下一組 | 只改今天剩下的。每組立刻寫進 `user/session.html`。對話貼表只是渲染，不要當存檔。 |
 | 這篇論文要不要進規則 | 先判層再改檔。單篇試驗不改 L1。 |
 
 排課、改表、回報組時，回覆末段會附肌群容量。開頭兩行是：每肌群每週大約至少 10 組、直接動作約算 1 組、協同約算 0.5 組；然後才是各肌群的 MEV／MAV／MRV 粗估。數字不當擋門。

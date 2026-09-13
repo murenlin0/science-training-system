@@ -1,12 +1,12 @@
 ---
 skill: science-training-system
 category: session
-description: 當日紀錄格式與 Volume 頁腳。真源是 YAML，聊天直接貼。
+description: 當日紀錄格式與 Volume 頁腳。真源是 HTML，聊天只是渲染。
 ---
 
 # 紀錄
 
-真源：`user/session.yaml`（gitignore）。每次回報組立刻寫入，再用 `core.session_log` 渲聊天文字與 `user/session.html`。不要把附件當使用者主畫面。
+真源：`user/session.html`（gitignore）。每次回報組立刻用 `core.session_log.save_session` 寫入。聊天貼的表只是同一份的渲染，不要從對話回推組數或重量。還沒有 html 時，才讀一次舊的 `user/session.yaml`。
 
 ## 聊天順序
 

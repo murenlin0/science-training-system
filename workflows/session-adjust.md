@@ -11,7 +11,7 @@ description: 正在練。只改今天剩下的。每組立刻寫紀錄並貼表�
 
 ## 開練（一次）
 
-對齊今天幾號動作。對方說用存檔才讀 `user/session.yaml`／`user/plan.md`。不要預設主項。
+對齊今天幾號動作。對方說用存檔才讀 `user/session.html`／`user/plan.md`（沒有 html 再讀舊 yaml）。不要預設主項。
 類型 I 沒有 `max_hold_s` → 今天只測，不開假工作組。
 熱身與下一組重量走 `core/load.py`。類型 B 用 `one_rm_added` 或 `system_1rm_L`，禁止手算。
 
@@ -25,7 +25,7 @@ description: 正在練。只改今天剩下的。每組立刻寫紀錄並貼表�
 
 ## 每組
 
-1. 立刻寫入 `user/session.yaml`，再渲 `user/session.html`。聊天**直接貼**更新後的紀錄區（見 `logging.md`）。不要等點頭、不要靠附件。
+1. 立刻寫入 `user/session.html`。聊天**直接貼**渲染（見 `logging.md`），不要從聊天回寫。不要等點頭。
 2. 先答夾問，再出下一組。尖銳痛／卡住／胸痛：該動作今天停。
 3. Δ = 實際 RPE − 目標 RPE。沒做滿視同 Δ ≥ +1。技術崩也當偏高。
 
