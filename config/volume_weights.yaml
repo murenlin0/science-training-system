@@ -23,3 +23,12 @@ movements:
   cable_external_rotation: [{m: 後三角, w: 0.5}]
   face_pull: [{m: 後三角, w: 1.0}, {m: 上背, w: 0.5}]
   leaning_cable_lateral: [{m: 側三角, w: 1.0}]
+  rear_delt_row: [{m: 後三角, w: 1.0}, {m: 上背, w: 0.5}, {m: 二頭, w: 0.3}]
+  reverse_fly: [{m: 後三角, w: 1.0}, {m: 上背, w: 0.3}]
+  supine_front_raise: [{m: 前三角, w: 1.0}]
+  straight_arm_front_raise: [{m: 前三角, w: 1.0}]
+  # bent_press：教練粗估（C），歡迎 PR 調整
+  bent_press: [{m: 前三角, w: 0.5}, {m: 三頭, w: 0.3}, {m: 腹, w: 0.5}]
+  l_sit: [{m: 腹, w: 1.0}]
+  planche_lean: [{m: 前三角, w: 1.0}, {m: 二頭, w: 0.5}]
+  barbell_row: [{m: 上背, w: 1.0}, {m: 後三角, w: 0.5}, {m: 二頭, w: 0.3}]

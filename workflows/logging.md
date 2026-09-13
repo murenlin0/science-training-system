@@ -37,7 +37,9 @@ description: 當日紀錄格式與 Volume 頁腳。真源是 HTML，聊天只是
 
 要顯示：排課、改表、回報組。不要顯示：諮詢、文獻、閒聊。
 
-改 `config/volume_weights.yaml` 後，下一則訓練回覆權重列與計算跟著變。
+權重來源：`config/volume_weights.yaml`（共用預設）；若存在且含 `movements`，`user/volume_weights.yaml` 可本機覆寫。`movements` 沒列到的動作 key **不計入** Volume，不要當場瞎猜權重——缺動作請引使用者看 `CONTRIBUTING.md` 送 GitHub PR 擴充。
+
+改權重檔後，下一則訓練回覆的權重列與計算跟著變。
 
 ## 一周怎麼算
 
