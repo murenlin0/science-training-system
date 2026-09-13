@@ -1,0 +1,106 @@
+# L2 — 參數層。把 L1 落成數字。
+# 變更觸發：使用者自己完成一個完整 block 的資料。塊中途不改。
+# 證據弱於 L1 的教練數字可以住這裡，但必須標 heuristic，不能回寫成原則。
+
+layer: L2
+change_trigger: "一個完整 block 的自有資料；塊中途嚴禁改"
+status: defaults-for-retraining
+
+# 回訓期：用族群預設，不用個人舊 1RM / 舊 block。見 retraining.yaml。
+
+parameters:
+  intensity:
+    strength_load_floor_pct: 80
+    hypertrophy_load_range_pct: [30, 100]
+    ts_rpe_cap: 8.5
+    default_rir: [2, 3]
+    backoff_discount_pct: [10, 13]
+    citation_ids: [acsm2026]
+    note: "TS/BO 結構本身不是 L1（仍是開口）。若採用，折扣落在 10–13%。"
+
+  volume:
+    hypertrophy_set_floor_per_muscle: 10
+    citation_ids: [acsm2026, schoenfeld2017, pelland2026]
+    landmarks:
+      file: config/volume_landmarks.yaml
+      weights: config/volume_weights.yaml
+      source: israetel_landmarks
+      grade: C
+      role: heuristic
+      note: >
+        輸出必須先寫 ACSM ≥10 與 Pelland 權重，再寫 MEV／MAV／MRV。
+        數字不當 fail／pass。Agent 不得說「超過 MRV 所以這週不合格」。
+    fractional:
+      direct: 1.0
+      synergist: 0.5
+      citation_ids: [pelland2026]
+      editable: config/volume_weights.yaml
+
+  frequency:
+    strength_min_per_lift: 2
+    muscle_sessions_per_week: [2, 3]
+    heavy_session_gap_h: 48
+    citation_ids: [acsm2026, pelland2026]
+    note: "≥2 次/周是 L1。48h 是保守預設（L2），不是 SRA 定律。"
+
+  aerobic_zones_hrr:
+    light: [30, 39]
+    moderate: [40, 59]
+    vigorous: [60, 89]
+    citation_ids: [acsm12th]
+    derived_from: L1-HRR-PRESCRIPTION
+
+  aerobic_fitt_health:
+    days_per_week: [1, 2]
+    moderate_min_per_session: [20, 40]
+    citation_ids: [acsm12th]
+    derived_from: L1-AEROBIC-HEALTH-FLOOR
+
+  gpp_budget:
+    recovery_counts: false
+    maintenance_budget_pct: [5, 10]
+    development_budget_pct: [15, 25]
+    development_allowed_phases: [capacity, deload]
+    citation_ids: [nsca5th, schumann2022]
+    derived_from: [L1-GPP-SUBORDINATE, L1-AEROBIC-NOT-RECOVERY]
+    note: "三檔百分比是編排啟發式，不是 meta 估出來的常數。"
+
+  gpp_session:
+    low_intensity_acute_cap_min: 30
+    same_day_gap_h: 6
+    prefer_modes: [bike, row, elliptical]
+    deprioritize_modes: [run]
+    hiit_max_per_week: 1
+    hiit_requires_aerobic_base: true
+    citation_ids: [schumann2022, wilson2012, nsca5th]
+    note: "≤30 min 低強度不損害隨後力量：來自急性研究，當參數不是原則。"
+
+  aerobic_progress:
+    weekly_load_increase_cap_pct: 10
+    citation_ids: [nsca5th]
+    role: heuristic
+
+  scheduling_optional:
+    high_low_cns:
+      enabled: false
+      grade: C
+      citation_ids: [francis_highlow]
+      note: "高低日極化不是原則。使用者要極化再開啟。"
+    jts_phase_skeleton:
+      enabled: true
+      grade: C
+      citation_ids: [jts_smith]
+      phases: [capacity, deload, strength, peak, test]
+      note: "備賽或想要階段變化時用。一般成人不是必須（L1-PERIODIZATION-NOT-FIRST-ORDER）。"
+
+  tendon_conservative:
+    slow_progression: true
+    citation_ids: [miller2005, kjaer_tendon]
+    grade: B
+    note: "肌腱適應慢 → 回訓期保守加重量。不是 72h 硬間隔定律。"
+
+  deadlift_cap:
+    conventional_work_sets_per_week: 6
+    grade: C
+    role: heuristic
+    note: "原 skill 硬約束。證據不足 L1，先降到可調參數。"

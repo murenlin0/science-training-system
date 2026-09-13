@@ -1,0 +1,15 @@
+# 空模板。真資料放 user/（gitignore），不要把姓名寫進 skill。
+# 只有對方說「用存檔／跟上次一樣」才讀 user/athlete.yaml。
+
+retraining:
+  active: false
+  legacy_baselines: void
+
+athlete:
+  name: ""
+  bodyweight: null
+  plate_step: 2.5
+  micro_plate: 1.25
+
+# 未問主項不准填。禁止預設三大項或肩推／引體／俄挺。
+primaries: {}

@@ -1,0 +1,101 @@
+# 查過、不夠格升成 L1 的主張。
+# 可以當 L2 啟發式或 L3 可選模板；不能當排課原則。
+
+rejected_as_principles:
+  - id: REJ-WESTSIDE-SYSTEM
+    claim: "西岸共軛（ME/DE 四日 + 特殊動作輪換 + 波浪%）是科學原則"
+    why: >
+      沒有針對完整共軛包裝的 RCT 或系統評價。來源是 Simmons 的教練書（C）。
+      ACSM 2026 / Grgic 2017 / Harries 2015：週期化模型對一般成人沒有穩定額外優勢。
+      「併發發展多種素質」也沒有贏過板塊/波動的 A 級證據。
+    may_live_as: "L3 optional_template（使用者點名才用）"
+    citation_ids: [westside_simmons, acsm2026, grgic2017, harries2015]
+
+  - id: REJ-WESTSIDE-ME-WEEKLY
+    claim: "每週必須 max effort，1–2 周輪換動作，否則 CNS 崩潰"
+    why: "原著處方 + 教練經驗。無 A 級劑量證據。ACSM：不必力竭。"
+    may_live_as: "共軛模板內部參數，不得寫進 L1"
+
+  - id: REJ-WESTSIDE-DE-PERCENT
+    claim: "動態努力必須用 40–60%（水平越高百分比越低）"
+    why: "教練百分比表。速度力量本身可用 L1-SPECIFICITY + 中等負荷快向心（ACSM 爆發力建議）覆蓋，不必鎖西岸數字。"
+    may_live_as: "L3 模板數字"
+
+  - id: REJ-WESTSIDE-72H
+    claim: "極端課必須間隔 72 小時（西岸規則）"
+    why: "體系內部日程。肌腱 72h 來自 Miller 機制研究（B），不能合成這條硬規則。"
+    may_live_as: "L2 保守間隔可選"
+
+  - id: REJ-WESTSIDE-60MIN
+    claim: "課必須 ≤60 分鐘，否則睪酮崩"
+    why: "過時激素敘事，不是訓練適應原則。"
+    may_live_as: null
+
+  - id: REJ-WESTSIDE-SPECIAL-EX
+    claim: "必須用特殊動作補弱，比賽動作才會漲"
+    why: "教練選動作傳統。轉移仍走 L1-SPECIFICITY：要漲的動作優先練。"
+    may_live_as: "輔助選單，不是原則"
+
+  - id: REJ-FUNCTIONAL-SUPERIOR
+    claim: "功能性訓練比傳統抗阻更科學 / 必須做功能動作"
+    why: >
+      「功能性訓練」定義在文獻裡站不住（Retos 2025：與傳統方案高度重疊）。
+      年輕未訓者 RCT：功能 ≈ 傳統（Zuo 2022）。
+      ACSM 2026：器材類型無一致差異。
+      運動員那篇 67 研究 meta 是 bioRxiv 預印本，不是 A 級。
+      老年人 SR 的好處來自「練日常生活任務」，已被 L1-SPECIFICITY 覆蓋，且前提是 ADL 目標。
+    may_live_as: "若目標是老年 ADL，用任務特異練習（已在 L1-SPECIFICITY 的前提裡）"
+    citation_ids: [acsm2026, retos2025_ft, zuo2022, liu2024_ft_older, xiao2024_ft_preprint, behm2010_unstable]
+
+  - id: REJ-UNSTABLE-FOR-STRENGTH
+    claim: "不穩定平面 / 懸吊更能練力量"
+    why: "CSEP/Behm：不穩定可作康復選項；最大力量仍走穩定平面漸進負荷。"
+    citation_ids: [behm2010_unstable, acsm2026]
+
+  - id: REJ-HIFT-AS-PRINCIPLE
+    claim: "HIFT / CrossFit 式混合是體能原則"
+    why: "ACSM 把它列成交替間歇協議之一，是 L3 手段。教科書已覆蓋 GPP，不必另引 CrossFit。"
+    may_live_as: "發展性 GPP 的一個協議，容量期可選"
+
+  - id: REJ-FRANCIS-HIGHLOW
+    claim: "高低日 CNS 極化是核心原則"
+    why: "C 級教練模型。舊系統曾把它抬到與證據不符的強制力。"
+    may_live_as: "L2 scheduling_optional.high_low_cns，預設關"
+    citation_ids: [francis_highlow]
+
+  - id: REJ-SRA-LAW
+    claim: "SRA 曲線是恢復定律"
+    why: "模型化語言（C），不是測量到的生理定律。"
+    citation_ids: [sra_model]
+
+  - id: REJ-MRV-NUMBERS
+    claim: "各肌群 MEV/MRV 數字是科學門檻"
+    why: "Israetel 書籍數字（C），無實驗推導、無前瞻驗證程式。"
+    may_live_as: "L2 heuristic 審計參考"
+    citation_ids: [israetel_landmarks]
+
+  - id: REJ-ACWR-CORE
+    claim: "每份課表必須輸出 ACWR"
+    why: "工具被拒絕用於傷害決策；數學耦合是 L0 事實。"
+    citation_ids: [impellizzeri2020]
+    may_live_as: "L3 disabled"
+
+  - id: REJ-INOL
+    claim: "用 INOL 管容量"
+    why: "論壇啟發式，無驗證。"
+    citation_ids: [inol]
+
+  - id: REJ-VBT-PREFERRED
+    claim: "VBT 優於 RPE/%1RM，應定錨"
+    why: "2022 元分析未顯示優效；裝置效度未覆蓋本使用者主項。"
+    citation_ids: [vbt_meta2022, ruizalias2024, nma2025]
+
+  - id: REJ-APRE-MANDATORY
+    claim: "主項必須用 APRE"
+    why: "類別有效（L1-AUTOREGULATION-CLASS）。單一工具不是原則；回訓期主項預設不用。"
+    citation_ids: [zhang2021, nma2025]
+
+  - id: REJ-OG-ISOMETRIC-MRV
+    claim: "俄挺/體操靜力有文獻 MRV（秒×難度）"
+    why: "Overcoming Gravity 是 C；該單位的疲勞模型在文獻上不存在。"
+    citation_ids: [overcoming_gravity]

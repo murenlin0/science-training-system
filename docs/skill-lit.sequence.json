@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "文獻進層",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "first",
+        "label": "先讀再判層",
+        "focus": ["person", "skill", "upd"],
+        "note": "丟論文或查一下 X。不編 DOI。沒有爬蟲。"
+      },
+      {
+        "id": "which",
+        "label": "層決定改哪裡",
+        "focus": ["upd", "files"],
+        "note": "算錯 → L0。原則 → 討論後才動 L1。數字 → L2。品牌 → rejected。"
+      },
+      {
+        "id": "reg",
+        "label": "登記再跑測試",
+        "focus": ["upd", "files", "person"],
+        "note": "citations.yaml + pytest + graphify。"
+      }
+    ]
+  },
+  "participants": [
+    { "id": "person", "type": "external", "label": "使用者", "sublabel": "丟論文" },
+    { "id": "skill", "type": "frontend", "label": "SKILL.md", "sublabel": "分流" },
+    { "id": "upd", "type": "frontend", "label": "literature-update", "sublabel": "現有一頁" },
+    { "id": "files", "type": "database", "label": "四層檔", "sublabel": "L0–L3 + evidence" }
+  ],
+  "segments": [
+    { "from": 150, "to": 270, "label": "收文" },
+    { "from": 288, "to": 480, "label": "判層" },
+    { "from": 498, "to": 640, "label": "改檔 + 測" }
+  ],
+  "messages": [
+    { "id": "l1m", "from": "person", "to": "skill", "y": 180, "label": "這篇要不要進層", "variant": "emphasis" },
+    { "id": "l2m", "from": "skill", "to": "upd", "y": 218, "label": "讀 literature-update", "variant": "emphasis" },
+    { "id": "l3m", "from": "upd", "to": "person", "y": 256, "label": "讀原文或可靠摘要", "variant": "security" },
+    { "id": "l4m", "from": "upd", "to": "files", "y": 330, "label": "先判層，再改檔", "variant": "emphasis" },
+    { "id": "l5m", "from": "files", "to": "upd", "y": 368, "label": "L0／L1／L2／L3／rejected", "variant": "return" },
+    { "id": "l6m", "from": "upd", "to": "files", "y": 430, "label": "寫 citations + citation_ids", "variant": "emphasis" },
+    { "id": "l7m", "from": "upd", "to": "files", "y": 490, "label": "pytest 再 graphify update", "variant": "dashed" },
+    { "id": "l8m", "from": "upd", "to": "person", "y": 548, "label": "說改了哪一層", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "skill", "from": 175, "to": 230, "type": "frontend" },
+    { "participant": "upd", "from": 213, "to": 554, "type": "frontend" },
+    { "participant": "files", "from": 325, "to": 374, "type": "database" },
+    { "participant": "files", "from": 425, "to": 500, "type": "database" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "現有流程",
+      "items": [
+        "先判層再改檔。單篇 RCT 不改 L1。改完 pytest 與 graphify"
+      ]
+    }
+  ]
+}

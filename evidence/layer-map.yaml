@@ -1,0 +1,80 @@
+# 文獻 → 層。給人掃一眼：這條進了哪，為什麼。
+# 強制力以各層檔案為準，本表只做索引。
+
+map:
+  L0:
+    from: "物理/算術恆等式，不是論文發現"
+    ids: [L0-TYPE-P, L0-TYPE-B-SYSTEM-LOAD, L0-TYPE-I, L0-KARVONEN, L0-NO-220-AGE, L0-ACWR-COUPLING, L0-INCREMENT-NORMALIZE, L0-BACKOFF-ARITH]
+    file: core/identities.yaml
+
+  L1:
+    file: guardrails/principles.yaml
+    used_for: "排課：使用者目標 + 本層"
+    ids:
+      always: [L1-RT-WORKS, L1-SPECIFICITY, L1-VOLUME-FIRST-ORDER, L1-FREQUENCY-AFTER-VOLUME, L1-FAILURE-NOT-REQUIRED, L1-EQUIPMENT-EQUIVALENCE, L1-NO-ACWR-INJURY]
+      if_strength: [L1-STRENGTH-DOSE, L1-AUTOREGULATION-CLASS]
+      if_hypertrophy: [L1-HYPERTROPHY-DOSE]
+      if_not_peaking: [L1-PERIODIZATION-NOT-FIRST-ORDER]
+      if_power_plus_endurance: [L1-CONCURRENT-PROTECT-POWER]
+      if_strength_plus_endurance: [L1-CONCURRENT-STRENGTH-OK]
+      if_strength_is_primary: [L1-GPP-SUBORDINATE, L1-AEROBIC-NOT-RECOVERY]
+      if_aerobic_prescribed: [L1-HRR-PRESCRIPTION, L1-AEROBIC-HEALTH-FLOOR]
+
+  L2:
+    file: config/parameters.yaml
+    note: "數字與啟發式。含被降級的 MEV/MRV、48h、GPP 三檔%、硬拉組數上限、可選高低日。"
+    assistance: "config/assistance.yaml — 主項 key → 補充/輔助菜單，不是原則。"
+    volume: "config/volume_landmarks.yaml + volume_weights.yaml — 審計顯示，不當門。"
+
+  L3:
+    file: adapters/registry.yaml
+    default: [rpe_rir]
+    optional: [variable_resistance, westside_conjugate_template, sbs_tm, vbt]
+    disabled: [acwr, inol, apre_on_primaries]
+
+  not_principles:
+    file: evidence/rejected.yaml
+    westside: [REJ-WESTSIDE-SYSTEM, REJ-WESTSIDE-ME-WEEKLY, REJ-WESTSIDE-DE-PERCENT, REJ-WESTSIDE-72H, REJ-WESTSIDE-60MIN, REJ-WESTSIDE-SPECIAL-EX]
+    functional: [REJ-FUNCTIONAL-SUPERIOR, REJ-UNSTABLE-FOR-STRENGTH, REJ-HIFT-AS-PRINCIPLE]
+    old_overreach: [REJ-FRANCIS-HIGHLOW, REJ-SRA-LAW, REJ-MRV-NUMBERS, REJ-ACWR-CORE, REJ-INOL]
+
+sources_to_layer:
+  acsm2026: [L1]
+  pelland2026: [L1]
+  schoenfeld2017: [L1]
+  acsm12th: [L0, L1, L2]
+  nsca5th: [L1, L2]
+  schumann2022: [L1, L2]
+  zhang2021: [L1, L3]
+  nma2025: [L1, L3]
+  impellizzeri2020: [L0, L1, L3]
+  grgic2017: [L1]
+  harries2015: [L1]
+  liu2024_ft_older: [L1-SPECIFICITY only]
+  retos2025_ft: [L1-EQUIPMENT-EQUIVALENCE, rejected]
+  zuo2022: [rejected]
+  xiao2024_ft_preprint: [rejected]
+  westside_simmons: [L3 template, rejected as L1]
+  soria_gila2015: [L3 optional]
+  shi2022: [L3 optional]
+  li2026_vrt: [L3 optional]
+  zourdos2016: [L3]
+  nuzzo2023: [L2, L3]
+  israetel_landmarks: [L2 heuristic]
+  francis_highlow: [L2 optional, rejected as L1]
+  jts_smith: [L2 optional skeleton]
+  robinson2024: [citation only, not frozen]
+  miller2005: [L2 conservative]
+  vbt_meta2022: [L3 degraded]
+  overcoming_gravity: [L2 assistance heuristic, rejected as L1]
+  grgic2021: [L2 assistance, supports L1-FAILURE-NOT-REQUIRED]
+  lesuer1997: [citation only; e1RM fallback stays Epley]
+  sanchez_moreno2017: [L2 pull-up VBT context; not live e1RM]
+  sanchez_moreno2020: [L2 assistance / pull-up frequency]
+  scharer2016_hold: [rejected as floor-planche 1RM]
+  lum2019: [L2 isometric context]
+  oranchuk2019: [L2 isometric context]
+  wang_shan2023: [L2 planche biomech]
+  rosaci2025: [L2 planche EMG / assistance]
+  scharer2015: [L2 rings isometric context]
+  inol: [rejected]

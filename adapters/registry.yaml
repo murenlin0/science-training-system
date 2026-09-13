@@ -1,0 +1,79 @@
+# L3 — 工具層。取得資訊與決定當日負荷的手段。
+# 可插拔。拔掉不影響 L0/L1。
+# CONSTRAINT-A：這裡任何專案不得升級為 L1。
+
+layer: L3
+change_trigger: "工具在特定動作上的效度與可執行性"
+
+adapters:
+  - id: rpe_rir
+    status: default
+    statement: "RPE/RIR 是當前預設的當日負荷語言。"
+    citation_ids: [zourdos2016, zhang2021, nma2025]
+    notes:
+      - "零件效度 B；「自體調節」這個類別是 L1。"
+      - "低次數、接近力竭時較準。"
+
+  - id: reps_pct_table
+    status: fallback
+    statement: "沒有可靠 RPE 時，用次數↔%1RM 表做粗估。"
+    citation_ids: [nuzzo2023]
+    notes:
+      - "類型 B 不用裸 Epley 打掛重；百分比仍打在 L 上（L0）。"
+
+  - id: apre
+    status: disabled_for_primaries
+    statement: "APRE 可留在輔助。主項預設不用。"
+    citation_ids: [zhang2021, nma2025]
+    notes:
+      - "NMA 排名高，但深蹲各法之間沒有中/大效果量；回訓期先少一個會週週改處方的工具。"
+
+  - id: vbt
+    status: optional_degraded
+    statement: "VBT 可接，不優先，不定錨原則。"
+    citation_ids: [vbt_meta2022, parejablanco2017, ruizalias2024, nma2025]
+    notes:
+      - "元分析未顯示優於 %1RM/RPE。"
+      - "RPE vs VBT 誰好會隨動作翻轉。"
+      - "現場裝置未驗證前，OHP/負重引體不要靠線性編碼器。"
+
+  - id: acwr
+    status: disabled
+    path: "adapters/_disabled/acwr.py"
+    citation_ids: [impellizzeri2020, prospero_acwr]
+    notes:
+      - "數學耦合（L0）+ 拒絕用於傷害決策（L1）。不得輸出為課表必填數字。"
+
+  - id: inol
+    status: disabled
+    citation_ids: [inol]
+    notes: ["無驗證，不使用。"]
+
+  - id: variable_resistance
+    status: optional
+    statement: "帶/鏈可變阻力是可選方法，不是共軛原則。"
+    citation_ids: [soria_gila2015, shi2022, li2026_vrt]
+    premises:
+      - "場上真有帶或鏈"
+      - "目標含最大肌力或功率"
+    notes:
+      - "有經驗者偏高負荷（≥80% 1RM）；可變佔比宜 ≤20%。"
+      - "開啟這個 ≠ 採用西岸周模板。"
+
+  - id: westside_conjugate_template
+    status: optional_template
+    statement: "ME/DE 四日、波浪%、動作輪換：模板，不是原則。"
+    citation_ids: [westside_simmons]
+    premises:
+      - "使用者明確選擇共軛模板"
+      - "目標是力量舉或需要同時練最大力量與速度力量"
+    notes:
+      - "完整包裝無 RCT/系統評價。見 evidence/rejected.yaml。"
+      - "若選用：仍須透過 L1（主項劑量、GPP 不搶主項、不力竭預設、有氧用 HRR）。"
+    docs: []
+    note: "西岸原文不隨本 skill 出貨。完整包裝見 evidence/rejected.yaml。"
+
+  - id: sbs_tm
+    status: optional
+    statement: "SBS TM / Single@8：可選調節器。"
+    citation_ids: [sbs_nuckols]

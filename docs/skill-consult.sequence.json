@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "諮詢（只問為什麼）",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "askonly",
+        "label": "不生成計畫",
+        "focus": ["person", "skill", "ask"],
+        "note": "問為什麼／怎麼／應該，不要表。"
+      },
+      {
+        "id": "read",
+        "label": "薄檔 + 引用",
+        "focus": ["ask", "l1", "cite"],
+        "note": "對表讀 literature/。不編造 DOI。"
+      },
+      {
+        "id": "handoff",
+        "label": "問完才切走",
+        "focus": ["ask", "person"],
+        "note": "要調表 → 改計畫。重排 → 排課。開練 → 當日。"
+      }
+    ]
+  },
+  "participants": [
+    { "id": "person", "type": "external", "label": "使用者", "sublabel": "只問原理" },
+    { "id": "skill", "type": "frontend", "label": "SKILL.md", "sublabel": "分流" },
+    { "id": "ask", "type": "frontend", "label": "consult", "sublabel": "現有一頁" },
+    { "id": "l1", "type": "security", "label": "L1 原則", "sublabel": "principles.yaml" },
+    { "id": "cite", "type": "database", "label": "citations", "sublabel": "含 rejected" }
+  ],
+  "segments": [
+    { "from": 150, "to": 270, "label": "判意圖" },
+    { "from": 288, "to": 500, "label": "讀規則" },
+    { "from": 518, "to": 640, "label": "回答 + 切換" }
+  ],
+  "messages": [
+    { "id": "c1", "from": "person", "to": "skill", "y": 180, "label": "有氧會不會掉力量", "variant": "emphasis" },
+    { "id": "c2", "from": "skill", "to": "ask", "y": 218, "label": "只問 → 諮詢", "variant": "emphasis" },
+    { "id": "c3", "from": "ask", "to": "l1", "y": 280, "label": "讀同期訓練原則", "variant": "security" },
+    { "id": "c4", "from": "l1", "to": "ask", "y": 318, "label": "GPP 不反向改主項", "variant": "return" },
+    { "id": "c5", "from": "ask", "to": "cite", "y": 364, "label": "對 citation_ids", "variant": "emphasis" },
+    { "id": "c6", "from": "cite", "to": "ask", "y": 402, "label": "來源 + rejected", "variant": "return" },
+    { "id": "c7", "from": "ask", "to": "person", "y": 470, "label": "結論 → 細節 → 出處", "variant": "return" },
+    { "id": "c8", "from": "person", "to": "ask", "y": 530, "label": "那幫我調整計劃", "variant": "dashed" },
+    { "id": "c9", "from": "ask", "to": "person", "y": 568, "label": "切改計畫，不重排", "variant": "security" }
+  ],
+  "activations": [
+    { "participant": "skill", "from": 175, "to": 230, "type": "frontend" },
+    { "participant": "ask", "from": 213, "to": 574, "type": "frontend" },
+    { "participant": "l1", "from": 275, "to": 324, "type": "security" },
+    { "participant": "cite", "from": 359, "to": 408, "type": "database" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "只問原理",
+      "items": [
+        "讀薄檔、標來源。要調表 → 改計畫；開練 → 當日"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+# 可宣告動作。主項是資料，不是模板字串。
+# type: P 純外載 / B 體重+掛重 / I 等長
+# mev/mav/mrv：P/B 為每週工作組；I 為每週總秒。數字是 L2 啟發式。
+
+movements:
+  - key: squat
+    name_zh: 深蹲
+    name_en: Barbell Back Squat
+    type: P
+    mev: 10
+    mav: 16
+    mrv: 18
+    min_gap_hours: 48
+    can_be_primary: true
+
+  - key: bench
+    name_zh: 臥推
+    name_en: Barbell Bench Press
+    type: P
+    mev: 8
+    mav: 14
+    mrv: 20
+    min_gap_hours: 48
+    can_be_primary: true
+
+  - key: deadlift
+    name_zh: 硬舉
+    name_en: Barbell Deadlift
+    type: P
+    mev: 4
+    mav: 6
+    mrv: 6
+    weekly_cap: 6
+    min_gap_hours: 72
+    can_be_primary: true
+    notes: "全程硬舉 weekly_cap 是 L2 啟發式，不是 L1。"
+
+  - key: ohp
+    name_zh: 站姿嚴格肩推
+    name_en: Standing Overhead Press
+    type: P
+    mev: 8
+    mav: 14
+    mrv: 16
+    min_gap_hours: 48
+    increment_pct_cap: 2.5
+    can_be_primary: true
+
+  - key: push_press
+    name_zh: 借力推
+    name_en: Push Press
+    type: P
+    mev: 3
+    mav: 6
+    mrv: 9
+    min_gap_hours: 48
+    can_be_primary: true
+
+  - key: z_press
+    name_zh: 坐姿地板肩推
+    name_en: Z-Press
+    type: P
+    mev: 3
+    mav: 8
+    mrv: 12
+    can_be_primary: true
+
+  - key: pullup
+    name_zh: 引體向上
+    name_en: Pull-up
+    type: B
+    mev: 10
+    mav: 18
+    mrv: 22
+    min_gap_hours: 48
+    can_be_primary: true
+
+  - key: weighted_pullup
+    name_zh: 負重引體向上
+    name_en: Weighted Pull-up
+    type: B
+    mev: 8
+    mav: 14
+    mrv: 18
+    min_gap_hours: 48
+    increment_pct_cap: 2.5
+    can_be_primary: true
+    notes: "百分比一律算在 L = 體重 + 掛重。"
+
+  - key: weighted_dip
+    name_zh: 負重雙槓臂屈伸
+    name_en: Weighted Dip
+    type: B
+    mev: 6
+    mav: 12
+    mrv: 16
+    can_be_primary: true
+
+  - key: planche
+    name_zh: 俄挺
+    name_en: Planche
+    type: I
+    mev: 60
+    mav: 120
+    mrv: 180
+    min_gap_hours: 48
+    allow_failure: false
+    can_be_primary: true
+    notes: "工作組 60–70% 最大秒數。未測 max_hold_s 第一堂只測。"
+
+  - key: front_lever
+    name_zh: 前水平
+    name_en: Front Lever
+    type: I
+    mev: 60
+    mav: 120
+    mrv: 180
+    allow_failure: false
+    can_be_primary: true
+
+  - key: lateral_raise
+    name_zh: 啞鈴側平舉
+    name_en: Dumbbell Lateral Raise
+    type: P
+    mev: 8
+    mav: 16
+    mrv: 24
+    allow_failure: true
+    can_be_primary: false
+
+  - key: barbell_curl
+    name_zh: 站姿槓鈴彎舉
+    name_en: Standing Barbell Curl
+    type: P
+    mev: 6
+    mav: 12
+    mrv: 18
+    allow_failure: true
+    can_be_primary: false
+
+  - key: hammer_curl
+    name_zh: 槌式彎舉
+    name_en: Hammer Curl
+    type: P
+    mev: 4
+    mav: 10
+    mrv: 16
+    allow_failure: true
+    can_be_primary: false
+
+  - key: cable_external_rotation
+    name_zh: Cable 肩外旋
+    name_en: Cable External Rotation
+    type: P
+    mev: 4
+    mav: 9
+    mrv: 12
+    allow_failure: false
+    can_be_primary: false

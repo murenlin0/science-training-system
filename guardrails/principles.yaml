@@ -1,0 +1,148 @@
+# L1 — 架構層。最強統計實證的生理適應原則。
+# 預設凍結。只接受 Position Stand 或高質量統合分析（A 級）改版。單篇 RCT 不受理。
+# 原則可以有前提：先看使用者目標，再決定這條管不管這份課表。
+# CONSTRAINT-B：本檔是 2026-09-10 依使用者要求整理的候選，尚未宣佈凍結。
+
+layer: L1
+frozen: true
+authored: "2026-09-10 user-requested literature sort"
+frozen_on: "2026-09-10"
+change_trigger: "A 級 Position Stand 或高品質統合分析改版；單篇 RCT 不受理"
+
+# 排課預設只用本層 + 使用者回答。L2/L3 只拿來稽核與選工具。
+
+principles:
+  - id: L1-RT-WORKS
+    statement: "任何形式的漸進抗阻都遠優於不練。"
+    premises: []
+    citation_ids: [acsm2026]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-SPECIFICITY
+    statement: "適應跟著被練的素質與任務走。要變強的動作優先練；要改善的日常任務就練那個任務。"
+    premises: []
+    citation_ids: [acsm2026, liu2024_ft_older, nsca5th]
+    evidence_grade: A
+    status: approved
+    note: "這是從「功能性訓練」文獻唯一收得住的原則。不是「必須用不穩定平面 / 必須用功能品牌動作」。"
+
+  - id: L1-VOLUME-FIRST-ORDER
+    statement: "每週有效組數是肌肥大與肌力的一階變數，且兩者都報酬遞減。"
+    premises: []
+    citation_ids: [acsm2026, schoenfeld2017, pelland2026]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-STRENGTH-DOSE
+    statement: "肌力：用較高負荷（約 ≥80% 1RM）、全幅度、關鍵動作優先、每動作每週至少 2 次。"
+    premises:
+      - "目標含最大肌力"
+    citation_ids: [acsm2026, pelland2026]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-HYPERTROPHY-DOSE
+    statement: "肌肥大：每肌群每週至少約 10 組有效組；30–100% 1RM 都可以，前提是努力度夠。"
+    premises:
+      - "目標含肌肥大"
+    citation_ids: [acsm2026, schoenfeld2017, pelland2026]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-FREQUENCY-AFTER-VOLUME
+    statement: "容量對齊之後：頻率對肌肥大幾乎沒有獨立效果；對肌力有獨立正效果。"
+    premises: []
+    citation_ids: [pelland2026, acsm2026]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-FAILURE-NOT-REQUIRED
+    statement: "一般成人不必練到力竭；力竭不是肌力或肌肥大的必要條件，也不作為預設處方。"
+    premises: []
+    citation_ids: [acsm2026]
+    evidence_grade: A
+    status: approved
+    note: "Robinson 2024 提示越接近力竭肌肥大更好，但作者自述 exploratory、擬合一般，不單獨改這條。"
+
+  - id: L1-EQUIPMENT-EQUIVALENCE
+    statement: "自由重量、器械、穩定平面：對一般成人的肌力/肌肥大沒有必須二選一的優劣。效果看負荷與總量。"
+    premises: []
+    citation_ids: [acsm2026, retos2025_ft, behm2010_unstable]
+    evidence_grade: A
+    status: approved
+    note: "直接拆掉「功能性器材比較科學」。"
+
+  - id: L1-PERIODIZATION-NOT-FIRST-ORDER
+    statement: "對一般健康成人，複雜週期化模型沒有穩定的額外優勢。模型選擇不是一階變數。"
+    premises:
+      - "目標不是把表現峰值對準某一比賽日"
+    citation_ids: [acsm2026, grgic2017, harries2015]
+    evidence_grade: A
+    status: approved
+    note: "若目標是備賽峰值，可用 L2 模板做計劃變化；那是日程工具，不是「共軛/線性/波動誰更科學」。"
+
+  - id: L1-AUTOREGULATION-CLASS
+    statement: "最大肌力：塊內按當日表現調負荷，整體優於全程死鎖固定 %1RM。"
+    premises:
+      - "目標含最大肌力"
+    citation_ids: [zhang2021, nma2025]
+    evidence_grade: A
+    status: approved
+    note: "鎖的是「要有自體調節這個類別」。RPE / APRE / VBT 誰上場是 L3，NMA 顯示工具排名會隨動作翻轉。"
+
+  - id: L1-CONCURRENT-STRENGTH-OK
+    statement: "同期加有氧：對肌肥大與最大肌力，典型劑量下沒有顯著干擾。"
+    premises:
+      - "目標主要是肌力或肌肥大，不是爆發力"
+    citation_ids: [schumann2022]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-CONCURRENT-PROTECT-POWER
+    statement: "同期加有氧：爆發力會被吃，且集中發生在同一節裡又拉又推。先分節/分天，不要先砍有氧量。"
+    premises:
+      - "目標含爆發力、RFD、或速度力量（含高翻/高拉/DE 意圖）"
+    citation_ids: [schumann2022, nsca5th]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-GPP-SUBORDINATE
+    statement: "若主目標是肌力/爆發力：主項劑量先定死，GPP 只填剩餘恢復預算；衝突時砍 GPP，不砍主項。"
+    premises:
+      - "使用者的主目標是肌力或爆發力，不是耐力競賽"
+    citation_ids: [schumann2022, nsca5th, acsm12th]
+    evidence_grade: A
+    status: approved
+    note: "這是目標層級 + 干擾證據合成的架構約束，不是西岸 GPP 課表。"
+
+  - id: L1-AEROBIC-NOT-RECOVERY
+    statement: "對肌力/爆發力專案：不要把有氧當主項的恢復手段。恢復靠減載、睡眠、營養。有氧的首要價值是心血管與代謝健康。"
+    premises:
+      - "主目標是肌力或爆發力"
+    citation_ids: [nsca5th, schumann2022]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-HRR-PRESCRIPTION
+    statement: "有氧強度用 %HRR（Karvonen）或實測 HRmax。禁止用 220−年齡當 HRmax，也不優先用裸 %HRmax 切區。"
+    premises:
+      - "這份計劃含有氧/體能強度處方"
+    citation_ids: [acsm12th]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-AEROBIC-HEALTH-FLOOR
+    statement: "若只要健康底線：每週 1–2 次中到劇烈有氧已有顯著益處，不必為了湊 150 分鐘去搶主項恢復。"
+    premises:
+      - "有氧定位是健康維持，不是心肺專項發展"
+    citation_ids: [acsm12th]
+    evidence_grade: A
+    status: approved
+
+  - id: L1-NO-ACWR-INJURY
+    statement: "禁止把 ACWR 當作傷害風險決策規則，也禁止當核心原則輸出。"
+    premises: []
+    citation_ids: [impellizzeri2020, prospero_acwr]
+    evidence_grade: A
+    status: approved

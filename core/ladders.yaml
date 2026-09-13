@@ -1,0 +1,14 @@
+# 等長難度階梯。係數相對 Full=1.0，供「秒 × 難度」加總。
+# 順序依 Overcoming Gravity / FIG，不是實驗推導的力矩。
+
+ladders:
+  planche:
+    - [tuck_planche, 團身俄挺, Tuck Planche, 0.40]
+    - [adv_tuck_planche, 進階團身俄挺, Advanced Tuck Planche, 0.55]
+    - [straddle_planche, 分腿俄挺, Straddle Planche, 0.80]
+    - [full_planche, 全俄挺, Full Planche, 1.00]
+  front_lever:
+    - [tuck_front_lever, 團身前水平, Tuck Front Lever, 0.40]
+    - [adv_tuck_front_lever, 進階團身前水平, Advanced Tuck Front Lever, 0.55]
+    - [straddle_front_lever, 分腿前水平, Straddle Front Lever, 0.80]
+    - [full_front_lever, 全前水平, Full Front Lever, 1.00]

@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Science-training-system 現況",
+    "quality_profile": "standard",
+    "views": [
+      {
+        "id": "plan-path",
+        "label": "排課主路徑",
+        "focus": ["user", "skill", "workflows", "core", "assist"],
+        "note": "先問主項，再算負荷、再查輔助表。沒有聚合器。"
+      },
+      {
+        "id": "four-layers",
+        "label": "四層規則",
+        "focus": ["l0", "l1", "l2", "l3", "evidence"],
+        "note": "強制力只在 L0/L1。L2 菜單與數字可討論。L3 可拔。"
+      },
+      {
+        "id": "assistance-lit",
+        "label": "輔助與文獻",
+        "focus": ["assist", "literature", "workflows"],
+        "note": "選完主項只讀對應 key。有引用不是該動作有 RCT。"
+      },
+      {
+        "id": "tests",
+        "label": "測試鎖什麼",
+        "focus": ["core", "assist", "tests", "evidence"],
+        "note": "類型 B 打在 L、輔助誠實分級、citation_ids 對得上。"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "使用者",
+      "sublabel": "對話裡宣告主項",
+      "pos": [36, 300],
+      "size": [132, 64]
+    },
+    {
+      "id": "skill",
+      "type": "frontend",
+      "label": "SKILL.md",
+      "sublabel": "路由 · 現在兩條路",
+      "tag": "v0.1.1",
+      "pos": [220, 300],
+      "size": [150, 68]
+    },
+    {
+      "id": "workflows",
+      "type": "frontend",
+      "label": "workflows/",
+      "sublabel": "design-plan · literature-update",
+      "pos": [430, 300],
+      "size": [168, 68]
+    },
+    {
+      "id": "core",
+      "type": "backend",
+      "label": "core/",
+      "sublabel": "P/B/I 公式 · 查表",
+      "pos": [660, 300],
+      "size": [160, 68]
+    },
+    {
+      "id": "assist",
+      "type": "database",
+      "label": "config/assistance.yaml",
+      "sublabel": "主項 key → 輔助菜單",
+      "pos": [880, 300],
+      "size": [168, 68]
+    },
+    {
+      "id": "l0",
+      "type": "security",
+      "label": "L0 identities",
+      "sublabel": "core/identities.yaml",
+      "tag": "算術",
+      "pos": [660, 120],
+      "size": [160, 64]
+    },
+    {
+      "id": "l1",
+      "type": "security",
+      "label": "L1 principles",
+      "sublabel": "guardrails/principles.yaml",
+      "tag": "凍結",
+      "pos": [430, 120],
+      "size": [168, 64]
+    },
+    {
+      "id": "l2",
+      "type": "database",
+      "label": "L2 參數",
+      "sublabel": "parameters · retraining",
+      "pos": [430, 480],
+      "size": [168, 64]
+    },
+    {
+      "id": "l3",
+      "type": "cloud",
+      "label": "L3 adapters",
+      "sublabel": "RPE 預設 · ACWR 停用",
+      "pos": [660, 480],
+      "size": [160, 64]
+    },
+    {
+      "id": "evidence",
+      "type": "database",
+      "label": "evidence/",
+      "sublabel": "citations · rejected · layer-map",
+      "pos": [220, 120],
+      "size": [150, 64]
+    },
+    {
+      "id": "literature",
+      "type": "database",
+      "label": "literature/",
+      "sublabel": "薄檔 + rule_id",
+      "pos": [880, 480],
+      "size": [168, 64]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "tests/",
+      "sublabel": "load · assistance · citations",
+      "pos": [880, 120],
+      "size": [168, 64]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "本機 skill",
+      "wraps": ["skill", "workflows", "core", "assist", "l0", "l1", "l2", "l3", "evidence", "literature", "tests"]
+    }
+  ],
+  "connections": [
+    { "id": "ask", "from": "user", "to": "skill", "label": "先問主項", "variant": "emphasis" },
+    { "id": "route", "from": "skill", "to": "workflows", "label": "讀流程" },
+    { "id": "compute", "from": "workflows", "to": "core", "label": "算負荷", "labelDy": -21 },
+    { "id": "core-reads-assist", "from": "core", "to": "assist", "label": "讀輔助表", "labelDy": -21 },
+    { "id": "l0-enforced", "from": "core", "to": "l0", "label": "斷言", "fromSide": "top", "toSide": "bottom" },
+    { "id": "l1-gate", "from": "skill", "to": "l1", "label": "排課只用這層", "fromSide": "top", "toSide": "bottom" },
+    { "id": "cite", "from": "l1", "to": "evidence", "label": "citation_ids", "labelAt": [400, 198] },
+    { "id": "l2-ref", "from": "workflows", "to": "l2", "label": "數字參考", "variant": "dashed", "fromSide": "bottom", "toSide": "top", "labelDy": 24 },
+    { "id": "l3-tools", "from": "core", "to": "l3", "label": "RPE 表", "variant": "dashed", "fromSide": "bottom", "toSide": "top", "labelDy": 24 },
+    { "id": "menu-docs", "from": "assist", "to": "literature", "label": "薄檔", "variant": "dashed", "labelDy": 24 }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "現有入口",
+      "items": [
+        "SKILL.md 只路由排課與文獻更新；guardrails.md 是反例",
+        "workflows：design-plan.md、literature-update.md"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "core/ 十個檔",
+      "items": [
+        "classify / load / e1rm / karvonen / assistance / assertions",
+        "identities.yaml、movements.yaml、ladders.yaml、__init__.py"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "規則與缺口",
+      "items": [
+        "L1 principles · L2 parameters+retraining · L3 registry+acwr 停用",
+        "literature/assistance 八主項薄檔；尚無六流程、無 user/"
+      ]
+    }
+  ]
+}

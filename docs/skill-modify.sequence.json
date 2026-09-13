@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "改現有計畫",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "have",
+        "label": "已有表才改",
+        "focus": ["person", "skill", "chg", "sheet"],
+        "note": "容量太大、換動作、恢復不過來。不是新排課。"
+      },
+      {
+        "id": "few",
+        "label": "只動 1–2 個變數",
+        "focus": ["chg", "l1", "sheet"],
+        "note": "優先減輔助。MRV 不當擋門。"
+      },
+      {
+        "id": "ok",
+        "label": "確認後才寫回",
+        "focus": ["chg", "person", "sheet"],
+        "note": "重排才切 design-plan。"
+      }
+    ]
+  },
+  "participants": [
+    { "id": "person", "type": "external", "label": "使用者", "sublabel": "已練 1–2 周" },
+    { "id": "skill", "type": "frontend", "label": "SKILL.md", "sublabel": "分流" },
+    { "id": "chg", "type": "frontend", "label": "modify-plan", "sublabel": "現有一頁" },
+    { "id": "sheet", "type": "database", "label": "user/plan.md", "sublabel": "說用才讀" },
+    { "id": "l1", "type": "security", "label": "L1 原則", "sublabel": "principles.yaml" }
+  ],
+  "segments": [
+    { "from": 150, "to": 280, "label": "對齊現況" },
+    { "from": 298, "to": 500, "label": "保守改" },
+    { "from": 518, "to": 650, "label": "確認寫回" }
+  ],
+  "messages": [
+    { "id": "u1", "from": "person", "to": "skill", "y": 180, "label": "容量太大了", "variant": "emphasis" },
+    { "id": "u2", "from": "skill", "to": "chg", "y": 218, "label": "已有計畫 → 改表", "variant": "emphasis" },
+    { "id": "u3", "from": "chg", "to": "sheet", "y": 256, "label": "讀現行課表", "variant": "emphasis" },
+    { "id": "u4", "from": "sheet", "to": "chg", "y": 294, "label": "主項 + 輔助 + 量", "variant": "return" },
+    { "id": "u5", "from": "chg", "to": "l1", "y": 348, "label": "對齊 L1", "variant": "security" },
+    { "id": "u6", "from": "l1", "to": "chg", "y": 386, "label": "可減輔助；主項不力竭", "variant": "return" },
+    { "id": "u7", "from": "chg", "to": "person", "y": 448, "label": "只改 1–2 項，確認？", "variant": "emphasis" },
+    { "id": "u8", "from": "person", "to": "chg", "y": 486, "label": "確認", "variant": "return" },
+    { "id": "u9", "from": "chg", "to": "sheet", "y": 540, "label": "寫回同一份課表", "variant": "dashed" }
+  ],
+  "activations": [
+    { "participant": "skill", "from": 175, "to": 230, "type": "frontend" },
+    { "participant": "chg", "from": 213, "to": 546, "type": "frontend" },
+    { "participant": "sheet", "from": 251, "to": 300, "type": "database" },
+    { "participant": "l1", "from": 343, "to": 392, "type": "security" },
+    { "participant": "sheet", "from": 535, "to": 552, "type": "database" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "不重排",
+      "items": [
+        "每次只改 1–2 項。確認後寫回。重排才走排課"
+      ]
+    }
+  ]
+}

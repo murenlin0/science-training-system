@@ -1,0 +1,44 @@
+# L0：算術定義。算錯就改，不靠論文。執行在 core/*.py。
+
+layer: L0
+change_trigger: "定義或實作算錯"
+status: registry
+
+identities:
+  - id: L0-TYPE-P
+    statement: "P：處方重量 = 外載 1RM × 百分比。體重不參與。"
+    enforced_in: ["core/load.py", "core/classify.py"]
+    tests: ["tests/test_load.py"]
+
+  - id: L0-TYPE-B-SYSTEM-LOAD
+    statement: "B：L = 體重 + 掛重。百分比只乘 L。掛重 = 目標 L − 體重。禁止對掛重取百分比。"
+    enforced_in: ["core/load.py"]
+    tests: ["tests/test_load.py"]
+
+  - id: L0-TYPE-I
+    statement: "I：處方秒 = 最大秒 × 百分比。單位是時間。"
+    enforced_in: ["core/load.py", "core/classify.py"]
+    tests: ["tests/test_load.py"]
+
+  - id: L0-KARVONEN
+    statement: "THR = (HRmax − HRrest) × 強度% + HRrest。"
+    enforced_in: ["core/karvonen.py"]
+    tests: ["tests/test_load.py"]
+
+  - id: L0-NO-220-AGE
+    statement: "HRmax 不是 220 − 年齡。該式不得當輸入。"
+    note: "不是恆等式。ACSM 12th 也不准用它處方。"
+    citation_ids: [acsm12th]
+
+  - id: L0-ACWR-COUPLING
+    statement: "急／慢性負荷若來自同一串滾動數字，比率數學上耦合，不能當獨立證據。"
+    citation_ids: [impellizzeri2020]
+    note: "傷害決策見 L1-NO-ACWR-INJURY。"
+
+  - id: L0-INCREMENT-NORMALIZE
+    statement: "公斤先對齊片重，再比百分比或加增量。"
+    enforced_in: ["core/load.py"]
+
+  - id: L0-BACKOFF-ARITH
+    statement: "BO = 頂組 × (1 − 折扣)。P 的頂組是外載，B 的頂組是 L。"
+    note: "折扣幅度是 L2。"

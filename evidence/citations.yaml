@@ -1,0 +1,524 @@
+# 單一引用來源。規則只寫 citation_ids，不內嵌書目字串。
+# grade: A = Position Stand / 高質量系統評價或統合分析
+#        B = 單篇 RCT、驗證研究、機制綜述
+#        C = 教練體系、書籍、論壇、無同儕審查數字
+# 本表只登記來源，不賦予強制力。強制力見各層檔案。
+
+citations:
+  # ---- 使用者提供（PROGRAMMING_FRAMEWORK v3）----
+  - id: schoenfeld2017
+    ref: "Schoenfeld BJ, Ogborn D, Krieger JW. Dose-response relationship between weekly resistance training volume and increases in muscle mass. J Sports Sci. 2017;35(11):1073-1082."
+    doi: "10.1080/02640414.2016.1210197"
+    grade: A
+    type: meta-analysis
+    n: "15 studies, 34 treatment groups"
+    source: user
+    key_findings:
+      - "每週組數對肌肉量有顯著效果 (P=0.002)"
+      - "每多 1 組 ES +0.023，約 +0.37% 增長，正向且大致線性"
+      - "上界不明：極少研究測試 >20 組/周"
+
+  - id: pelland2026
+    ref: "Pelland JC, Remmert JF, Robinson ZP, Hinson SR, Zourdos MC. The Resistance Training Dose Response: Meta-Regressions Exploring the Effects of Weekly Volume and Frequency on Muscle Hypertrophy and Strength Gains. Sports Med. 2026;56:481-505."
+    doi: "10.1007/s40279-025-02344-w"
+    grade: A
+    type: meta-regression
+    n: "67 studies, 2058 participants"
+    source: user
+    key_findings:
+      - "fractional 量化法證據最強"
+      - "容量邊際斜率 >0 的後驗機率：肌肥大 100%、肌力 100%；兩者皆報酬遞減，肌力遞減更明顯"
+      - "頻率：容量控制後對肌肥大效果可忽略；對肌力有獨立正效果（後驗機率 100%）"
+
+  - id: robinson2024
+    ref: "Robinson ZP, Pelland JC, Remmert JF, Refalo MC, Jukic I, Steele J, Zourdos MC. Exploring the Dose-Response Relationship Between Estimated Resistance Training Proximity to Failure, Strength Gain, and Muscle Hypertrophy. Sports Med. 2024;54(9):2209-2231."
+    doi: "10.1007/s40279-024-02069-2"
+    grade: A
+    type: meta-regression
+    source: user
+    key_findings:
+      - "肌力最佳擬閤中，估計 RIR 的邊際斜率信賴區間含 0"
+      - "肌肥大隨越接近力竭而提升"
+    caveats:
+      - "作者自述 exploratory，整體擬合品質 modest → 不單獨凍結為 L1"
+
+  - id: acsm2026
+    ref: "Currier BS, et al. Resistance Training Prescription for Muscle Function, Hypertrophy, and Physical Performance in Healthy Adults: An Overview of Reviews. ACSM Position Stand. Med Sci Sports Exerc. 2026;58(4):851-872."
+    grade: A
+    type: position-stand
+    n: "137 systematic reviews, >30,000 participants"
+    source: both
+    key_findings:
+      - "肌力：≥80% 1RM、全關節活動度、2-3 組、關鍵動作優先、每週 ≥2 次"
+      - "肌肥大：每肌群每週 ≥10 組；30-100% 1RM 只要接近力竭皆有效"
+      - "練到力竭、器材類型、複雜週期化未一致影響一般成人成果"
+    supersedes: "Ratamess et al. 2009 ACSM position stand"
+
+  - id: zhang2021
+    ref: "Zhang X, Li H, Bi S, Luo Y, Cao Y, Zhang G. Auto-Regulation Method vs. Fixed-Loading Method in Maximum Strength Training for Athletes. Front Physiol. 2021;12:651112."
+    doi: "10.3389/fphys.2021.651112"
+    grade: A
+    type: meta-analysis
+    n: "8 studies, 166 subjects, 5-10 weeks"
+    source: user
+    key_findings:
+      - "自體調節整體優於固定負荷 (ES=0.64, P<0.001, I²=0%)"
+      - "ARPE 為三法中最有效 (ES=0.78)"
+      - "時長分組：≤8 周 ES=0.87；8-10 周 ES=0.32（仍顯著）"
+    caveats:
+      - "時長分組為 between-study subgroup，非同一受試者的時間曲線"
+      - "無方法切換協議；無 >10 周資料"
+      - "「自體調節這個類別優於固定 %1RM」可進 L1；「必須用 APRE」不行，工具選擇屬 L3"
+
+  - id: nma2025
+    ref: "Autoregulated resistance training for maximal strength enhancement: A systematic review and network meta-analysis. 2025. PMID 40791980."
+    grade: A
+    type: network-meta-analysis
+    source: user
+    key_findings:
+      - "深蹲 1RM SUCRA：APRE 93.0% > RPE 66.8% > VBRT 27.0% > PBRT 13.2%"
+      - "臥推 1RM SUCRA：APRE 97.1% > VBRT 57.1% > RPE 29.9% > PBRT 15.9%"
+      - "深蹲各介入之間未觀察到中等或大的效果量"
+      - "RPE 與 VBT 相對優劣在深蹲與臥推之間翻轉，無穩定順序"
+    caveats:
+      - "排名不等於必須換工具；L3 可插拔，不定錨原則"
+
+  - id: zourdos2016
+    ref: "Zourdos MC, Klemp A, Dolan C, et al. Novel Resistance Training-Specific RPE Scale Measuring Repetitions in Reserve. J Strength Cond Res. 2016;30(1):267-275."
+    grade: B
+    type: validation-study
+    n: 29
+    source: user
+    key_findings:
+      - "經驗者速度與 RPE 強負相關 r=-0.88；新手 r=-0.77"
+      - "RIR 預測在低次陣列與接近力竭時較準確"
+
+  - id: miller2005
+    ref: "Miller BF, et al. Coordinated collagen and muscle protein synthesis in human patella tendon and quadriceps muscle after exercise. J Physiol. 2005. PMID 16002437."
+    grade: B
+    type: mechanistic
+    source: user
+    key_findings:
+      - "運動後 6h 上升、24h 達峰、72h 大致回落，肌腱膠原與肌原纖維合成率仍偏高"
+    caveats:
+      - "機制研究，不升格為 L1 間隔定律"
+
+  - id: kjaer_tendon
+    ref: "Kjær M, Langberg H, Heinemeier K, et al. From mechanical loading to collagen synthesis, structural changes and function in human tendon."
+    grade: B
+    type: review
+    source: user
+    key_findings:
+      - "肌腱結構性適應為長期慢過程，時間常數遠長於急性合成反應"
+
+  - id: parejablanco2017
+    ref: "Pareja-Blanco F, et al. Effects of velocity loss during resistance training on athletic performance, strength gains and muscle adaptations. Scand J Med Sci Sports. 2017;27(7)."
+    doi: "10.1111/sms.12678"
+    grade: B
+    type: rct
+    n: 22
+    source: user
+    key_findings:
+      - "VL20 較 VL40 少做約 40% 反覆，深蹲肌力增益相似，CMJ 更佳"
+      - "VL40 產生更大肌肥大，伴隨 type IIX→IIA 表型偏移"
+    caveats:
+      - "常被誤引為「VBT 肌肥大也較佳」——實際相反"
+
+  - id: vbt_meta2022
+    ref: "Comparison of the effects of velocity-based vs. traditional resistance training methods on adaptations in strength, power, and sprint speed. J Sports Sci. 2022."
+    doi: "10.1080/02640414.2022.2059320"
+    grade: A
+    type: meta-analysis
+    source: user
+    key_findings:
+      - "速度回饋機制上有理據，現有實證未反映出優於傳統 %1RM/RPE/RIR"
+      - "VBT 有額外時間與金錢成本，是否轉化為更好適應目前證據不確定"
+
+  - id: ruizalias2024
+    ref: "Ruiz-Alias 2024（Vitruve 線性位置轉換器在自由重量深蹲的效度）"
+    grade: B
+    type: validation-study
+    source: user
+    key_findings:
+      - "Vitruve 在自由重量深蹲無效度"
+    caveats:
+      - "OHP 與負重引體上的效度無同儕審查驗證"
+
+  - id: impellizzeri2020
+    ref: "Impellizzeri FM, et al. 2020. Acute:chronic workload ratio — mathematical coupling."
+    grade: A
+    type: methodological-critique
+    source: user
+    key_findings:
+      - "急慢性負荷比存在數學耦合，明確拒絕用於傷害風險管理"
+
+  - id: prospero_acwr
+    ref: "系統評價 PROSPERO CRD42024615589（2024-2025）"
+    grade: A
+    type: protocol-or-review
+    source: user
+    key_findings:
+      - "對 ACWR 預測傷害的效度提出保留，建議不作為唯一決策依據"
+
+  - id: israetel_landmarks
+    ref: "Israetel M, Case J, Davis J. Scientific Principles of Hypertrophy Training. Renaissance Periodization, 2019."
+    grade: C
+    type: coach-book
+    source: both
+    caveats:
+      - "MEV/MAV/MRV 各肌群數字出自書籍與網站，非同儕審查"
+      - "無原始實驗推導這些門檻；無前瞻驗證的「測量自己 MRV」程式"
+
+  - id: francis_highlow
+    ref: "Charlie Francis 高低抑制 CNS 極化模型"
+    grade: C
+    type: coach-heuristic
+    source: both
+    caveats:
+      - "無同儕審查文獻支援 → 不得為 L1"
+
+  - id: sra_model
+    ref: "SRA (Stimulus-Recovery-Adaptation) 曲線"
+    grade: C
+    type: coach-model
+    source: both
+    caveats:
+      - "教練傳統的模型化語言，無同儕審查驗證"
+
+  - id: rts_tuchscherer
+    ref: "Mike Tuchscherer. The Reactive Training Manual. RTS, 2007."
+    grade: C
+    type: coach-system
+    source: both
+    caveats:
+      - "成體系版本無同儕審查；RIR-based RPE 定錨零件為 B；自體調節類別為 A"
+
+  - id: inol
+    ref: "INOL (Intensity × Number Of Lifts) 論壇啟發式"
+    grade: C
+    type: forum-heuristic
+    source: user
+    caveats:
+      - "無任何驗證。狀態：不使用"
+
+  - id: overcoming_gravity
+    ref: "Steven Low. Overcoming Gravity (2nd Ed) / Advanced Programming."
+    grade: C
+    type: coach-book
+    source: user
+    caveats:
+      - "體操靜力進階階梯基於 FIG Code of Points，非實驗推導"
+      - "等長訓練量單位的 MRV/疲勞模型在文獻上不存在"
+
+  # ---- 教科書與方法論書目 ----
+  - id: acsm12th
+    ref: "Ozemek C, Bonikowske A, et al. ACSM's Guidelines for Exercise Testing and Prescription. 12th ed."
+    grade: A
+    type: consensus-guideline
+    source: author
+    key_findings:
+      - "明確不推薦 220−年齡估算 HRmax（誤差常達 10–15 bpm）"
+      - "有氧強度優先 %HRR / Karvonen，或實測 HRmax"
+      - "FITT：中等 40–59% HRR；每週 1–2 次中-劇烈仍有顯著健康益處"
+      - "間歇協議（含槓鈴複合組）為處方選項，不是原則"
+
+  - id: nsca5th
+    ref: "Haff GG, Triplett NT (eds). NSCA Essentials of Strength Training and Conditioning. 5th ed."
+    grade: A
+    type: consensus-textbook
+    source: author
+    key_findings:
+      - "對力量/爆發力專案，大量有氧促恢復不必要甚至可能反效"
+      - "同期訓練干擾：爆發力與同節安排是重點（與 Schumann 2022 對齊）"
+      - "有氧五型譜系、能量系統 work-rest、進階約 10%、降頻可維持"
+      - "「linear periodization」是誤稱；週期化核心是去掉線性"
+      - "work-rest 表是工程近似，作者承認缺最優比的金標準"
+
+  - id: schumann2022
+    ref: "Schumann M, et al. Compatibility of Concurrent Aerobic and Strength Training for Skeletal Muscle Size and Function. Sports Med. 2022;52:601-612."
+    grade: A
+    type: meta-analysis
+    n: "43 studies / 1090 participants"
+    source: both
+    key_findings:
+      - "肌肥大 SMD −0.01, p=0.919：無顯著干擾"
+      - "最大力量 SMD −0.06, p=0.446：無顯著干擾"
+      - "爆發力 SMD −0.28, p=0.007：顯著干擾，且集中於同節完成"
+      - "緩解首推分節/分天，不是先砍有氧量"
+
+  - id: wilson2012
+    ref: "Wilson JM, et al. Concurrent training: a meta-analysis examining interference of aerobic and resistance exercises. J Strength Cond Res. 2012."
+    grade: A
+    type: meta-analysis
+    source: author
+    key_findings:
+      - "干擾隨有氧頻率與時長遞增；跑步干擾大於騎行"
+    caveats:
+      - "已被 Schumann 2022 擴大樣本後部分改寫：肌肥大與最大力量干擾未過顯著門檻"
+
+  - id: nuzzo2023
+    ref: "Nuzzo JL, et al. REPS~%1RM Updated. SportRxiv 2023. DOI 10.51224/SRXIV.291"
+    doi: "10.51224/SRXIV.291"
+    grade: A
+    type: meta-analysis
+    n: "7270 participants"
+    source: author
+    key_findings:
+      - "更新力竭次數 ↔ %1RM 表"
+    caveats:
+      - "預印本平臺；當查表用（L2），不當原則"
+
+  - id: jts_smith
+    ref: "Smith CW. Scientific Principles of Strength Training; The Powerlifting Program Design Manual. Juggernaut Training Systems."
+    grade: C
+    type: coach-system
+    source: author
+    caveats:
+      - "運營模板（容量→減載→力量→衝刺）。ACSM 2026：對一般成人，複雜週期化無一致額外優勢"
+
+  - id: westside_simmons
+    ref: "Simmons L. The Westside Barbell Book of Methods. 2023."
+    grade: C
+    type: coach-system
+    source: author
+    caveats:
+      - "無針對「完整西岸共軛包裝」的 RCT 或系統評價"
+      - "ME/DE 四日、波浪%、72h、60 分鐘睪酮說：教練處方，不是原則"
+
+  - id: barbell_medicine
+    ref: "Feigenbaum J, Baraki A. Barbell Medicine (2016–).  biopsychosocial pain model, appropriate dose."
+    grade: B
+    type: clinical-synthesis
+    source: author
+    key_findings:
+      - "疼痛的生物心理社會模型；適宜劑量，不把疼痛當自動停訓"
+
+  - id: sbs_nuckols
+    ref: "Nuckols G. Stronger By Science / SBS Program. TM 自動調節、Single@8."
+    grade: C
+    type: coach-system
+    source: author
+
+  - id: phul
+    ref: "Campbell B. PHUL (Power Hypertrophy Upper Lower)."
+    grade: C
+    type: template
+    source: author
+    caveats:
+      - "本庫只吸收 TUT 節奏碼與組間休息；6 天高頻結構與 48h 約束衝突，不收"
+
+  # ---- 週期化比較（西岸「併發週期化更優」的對照證據）----
+  - id: grgic2017
+    ref: "Grgic J, et al. Effects of linear and daily undulating periodized resistance training programs on measures of muscle hypertrophy. PeerJ. 2017."
+    grade: A
+    type: meta-analysis
+    source: investigation
+    key_findings:
+      - "LP vs DUP 肌肥大合併差 d=−0.02（95% CI −0.25 to 0.21），無差異"
+
+  - id: harries2015
+    ref: "Harries SK, Lubans DR, Callister R. Systematic review and meta-analysis of linear and undulating periodized resistance training. J Strength Cond Res. 2015."
+    grade: A
+    type: meta-analysis
+    source: investigation
+    key_findings:
+      - "線性 vs 波動週期化對上下肢肌力無一致優劣"
+
+  # ---- 西岸零件：可變阻力（可當 L3，不當共軛原則）----
+  - id: soria_gila2015
+    ref: "Soria-Gila MA, et al. Effects of Variable Resistance Training on Maximal Strength. J Strength Cond Res. 2015."
+    doi: "10.1519/JSC.0000000000000971"
+    grade: A
+    type: meta-analysis
+    n: "7 studies, 235 subjects"
+    source: investigation
+    key_findings:
+      - "長期（≥7 周）帶/鏈可變阻力比恆定阻力多約 5 kg 1RM"
+
+  - id: shi2022
+    ref: "Shi L, et al. Effects of Variable-Resistance Training Versus Constant-Resistance Training on Maximum Strength. Int J Environ Res Public Health. 2022;19(14):8559."
+    grade: A
+    type: meta-analysis
+    n: "14 studies"
+    source: investigation
+    key_findings:
+      - "有經驗者 VRT ≥80% 1RM 優於恆定阻力；無經驗者反而 <80% 更賺"
+
+  - id: li2026_vrt
+    ref: "Li J, Chen Z, Xu K, Wang Y, Gong M. Comparison of variable resistance and free weight training. J Strength Cond Res. 2026;40(2):e211-e223."
+    grade: A
+    type: meta-analysis
+    source: investigation
+    key_findings:
+      - "長期 VRT 在最大力量與跳躍上略優於自由重量（SMD 約 0.28–0.37）"
+      - "可變負荷佔比 ≤20% 較穩；急性 >37% 可變負荷會壓低速度與功率"
+
+  # ---- 功能性訓練（調查用；多數不升格）----
+  - id: zuo2022
+    ref: "Zuo C, et al. Functional and Traditional Resistance Training Are Equally Effective in Increasing Upper and Lower Limb Muscular Endurance and Performance in Untrained Young Men. Int J Environ Res Public Health. 2022."
+    grade: B
+    type: rct
+    n: 29
+    source: investigation
+    key_findings:
+      - "6 周後 FRT 與 TRT 在肌耐力與表現上無組間差"
+
+  - id: liu2024_ft_older
+    ref: "Liu C, et al. Is functional training functional? A systematic review of its effects in community-dwelling older adults. Eur Rev Aging Phys Act. 2024."
+    grade: A
+    type: systematic-review
+    n: "32 studies"
+    source: investigation
+    key_findings:
+      - "社群老年人：以日常生活任務為媒介的訓練可改善 ADL"
+      - "平衡與移動性並不優於其他運動方案"
+      - "定義是「練日常任務」，不是不穩定平面或「功能性」品牌"
+    caveats:
+      - "適用前提是目標=老年 ADL，不是力量/體操回訓者"
+
+  - id: retos2025_ft
+    ref: "Training protocol characteristics in studies comparing functional versus traditional training: systematic review of controlled trials. Retos. 2025."
+    grade: A
+    type: systematic-review
+    source: investigation
+    key_findings:
+      - "FT 與 TT 方案高度重疊，難以操作化區分"
+      - "文獻裡的「功能」常只是「多關節 + 自由重量」，已被 ACSM 器材等效覆蓋"
+
+  - id: xiao2024_ft_preprint
+    ref: "The Effects of Functional Training on Muscle Strength in Athletes: A Meta-Analysis. bioRxiv 2024.06.01.596934."
+    grade: C
+    type: preprint
+    source: investigation
+    caveats:
+      - "未同儕審查；定義異質；不得當 A 級進 L1"
+
+  - id: behm2010_unstable
+    ref: "Behm DG, et al. Canadian Society for Exercise Physiology position stand: The use of instability to train the core in athletic and nonathletic conditioning. Appl Physiol Nutr Metab. 2010."
+    grade: A
+    type: position-stand
+    source: investigation
+    key_findings:
+      - "不穩定訓練可作康復/非運動員健康選項"
+      - "對最大力量與運動表現，穩定平面的漸進負荷仍是主路"
+
+  # ---- 輔助對照表入庫 ----
+  - id: grgic2021
+    ref: "Grgic J, Schoenfeld BJ, Orazem J, Sabol F. Effects of resistance training performed to failure or non-failure on muscular strength and hypertrophy: a systematic review and meta-analysis. J Sport Health Sci. 2021."
+    grade: A
+    type: meta-analysis
+    source: author
+    key_findings:
+      - "肌力：力竭 vs 非力竭 ES=−0.09（無差異）"
+      - "未等化訓練量時非力竭對肌力較優（ES=−0.32）"
+      - "已受訓者肌肥大力竭略優 ES=0.15"
+    notes:
+      - "主項力竭沒有肌力收益。輔助單關節可接近力竭。"
+
+  - id: lesuer1997
+    ref: "LeSuer DA, McCormick JH, Mayhew JL, Wasserstein RL, Arnold MD. The accuracy of prediction equations for estimating 1-RM performance in the bench press, squat, and deadlift. J Strength Cond Res. 1997;11(4):211-213."
+    grade: B
+    type: validation-study
+    n: 67
+    source: investigation
+    key_findings:
+      - "七條公式與實測 1RM 相關皆高（r>0.95）"
+      - "校準因動作而異；沒有一條全面贏過其餘"
+      - "死拉全體低估"
+    caveats:
+      - "未訓大學生；不含肩推／負重引體／俄挺"
+      - "不構成換掉現役 RPE 表或 Epley 退路的理由"
+
+  - id: sanchez_moreno2017
+    ref: "Sánchez-Moreno M, Rodríguez-Rosell D, Pareja-Blanco F, Mora-Custodio R, González-Badillo JJ. Movement velocity as indicator of relative intensity and level of effort attained during the set in pull-up exercise. Int J Sports Physiol Perform. 2017;12(10):1378-1384."
+    doi: "10.1123/ijspp.2016-0791"
+    grade: B
+    type: validation-study
+    n: 52
+    source: investigation
+    key_findings:
+      - "引體 MPV 與 %1RM 相關 r=−0.96"
+      - "1RM 速度約 0.20 m/s；1RM = 體重 + 外載"
+    caveats:
+      - "要線性編碼器。不是沒裝置時的現役 e1RM"
+      - "公式打在總負荷，與 L0 類型 B 一致，但不替換 RPE 表"
+
+  - id: sanchez_moreno2020
+    ref: "Sánchez-Moreno M, et al. Monitoring velocity and load during pull-up. 2020."
+    grade: B
+    type: rct-or-training-study
+    source: author
+    key_findings:
+      - "引體每週 2 次；同一 phase 內 VL25 優於 VL50"
+    caveats:
+      - "頻率／疲勞觀察，不是輔助動作 RCT"
+
+  - id: scharer2016_hold
+    ref: "Schärer C, Tacchelli L, Göpfert B, et al. Accuracy of prediction of maximum resistance at increased holding times based on a three seconds maximum static strength test of the three main strength elements on rings. Sci Gymnast J. 2016;8(2):125-134."
+    grade: B
+    type: applied-study
+    n: 10
+    source: investigation
+    key_findings:
+      - "吊環十字／support scale／swallow：3s 最大阻力可估 5s／7s 加掛重"
+    caveats:
+      - "瑞士國家隊吊環。不是地板俄挺秒數定律，不當類型 I 的公斤 1RM"
+
+  - id: lum2019
+    ref: "Lum D, Barbosa TM. Brief review: effects of isometric strength training on strength and dynamic performance. 2019."
+    grade: B
+    type: review
+    source: author
+    key_findings:
+      - "等長肌力處方常用 80–100% MVC、短持、累積秒數"
+    caveats:
+      - "單位是 MVC，不是 max-hold 時間。套到俄挺秒數是啟發式"
+
+  - id: oranchuk2019
+    ref: "Oranchuk DJ, et al. Isometric training and long-term adaptations. 2019."
+    grade: B
+    type: review
+    source: author
+    key_findings:
+      - "肌腱／膠原適應常引用較高 %MVC"
+    caveats:
+      - "同樣是 MVC，不是體操 hold 秒數"
+
+  - id: wang_shan2023
+    ref: "Wang X, Shan G. Insights from a Nine-Segment Biomechanical Model and Its Simulation for Anthropometrical Influence on Individualized Planche Learning and Training in Gymnastics. Bioengineering. 2023;10(7):761."
+    doi: "10.3390/bioengineering10070761"
+    grade: B
+    type: biomechanical-model
+    source: investigation
+    key_findings:
+      - "地板俄挺的關鍵控制是肩與腕的節段角，不是「臥推力量夠不夠」"
+      - "身高／肢段比例會改變所需肩腕力矩；同樣秒數對不同體型不是同一難度"
+    caveats:
+      - "模擬與力學模型，不是輔助動作訓練試驗，也不是週期化 RCT"
+
+  - id: rosaci2025
+    ref: "Rosaci G, Nigro F, Cortesi M, Ciacci S, Bartolomei S, Fantozzi S. Electromyographic analysis of the support scale in gymnastics and its related preconditioning strengthening exercises. J Strength Cond Res. 2025;39(6):680-686."
+    doi: "10.1519/JSC.0000000000005074"
+    grade: B
+    type: emg-observational
+    n: 7
+    source: investigation
+    key_findings:
+      - "吊環 support scale（文獻亦稱 planche）以肱二頭、前三角、前鋸為主"
+      - "五個常用預先增強動作的肌肉協同都與本動作不同，不能當「等於俄挺」"
+      - "站姿直臂啞鈴前舉（DSP）整體興奮較接近；腳撐版（SSSF）二頭／三頭比最接近"
+      - "滑輪減載版較像技術／肩胛位置練習，二頭參與明顯較低"
+    caveats:
+      - "n=7 吊環專項；急性 EMG，不是地板俄挺 1RM／秒數進展 RCT"
+      - "地板俄挺與吊環 support scale 支撐面不同，轉移要打折"
+
+  - id: scharer2015
+    ref: "Schärer C, Hübner K. The relationship between swallow, support scale and iron cross on rings and their specific preconditioning strengthening exercises. Sci Gymnast J. 2015;7(3):59-68."
+    doi: "10.52165/sgj.7.3.59-68"
+    grade: B
+    type: applied-study
+    source: investigation
+    key_findings:
+      - "吊環靜力（swallow／support scale／iron cross）與專項預先增強負荷有相關，常用 ≥75% 體重當吊環 hold 門檻"
+    caveats:
+      - "Magglingen 吊環實務，不是地板俄挺處方"

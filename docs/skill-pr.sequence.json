@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "估 PR（不排整週）",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "which",
+        "label": "先問哪個動作",
+        "focus": ["person", "skill", "page"],
+        "note": "沒說動作不准猜三大項。"
+      },
+      {
+        "id": "sysload",
+        "label": "類型 B 打在 L",
+        "focus": ["page", "cls", "calc"],
+        "note": "對 L 反推，再減回體重得掛重。"
+      },
+      {
+        "id": "give",
+        "label": "只給保守值",
+        "focus": ["calc", "page", "person"],
+        "note": "不當完整課表。回訓不用舊 1RM。"
+      }
+    ]
+  },
+  "participants": [
+    { "id": "person", "type": "external", "label": "使用者", "sublabel": "只要數字" },
+    { "id": "skill", "type": "frontend", "label": "SKILL.md", "sublabel": "分流" },
+    { "id": "page", "type": "frontend", "label": "estimate-pr", "sublabel": "現有一頁" },
+    { "id": "cls", "type": "backend", "label": "classify.py", "sublabel": "P / B / I" },
+    { "id": "calc", "type": "backend", "label": "e1rm.py", "sublabel": "公式不改" }
+  ],
+  "segments": [
+    { "from": 150, "to": 280, "label": "問動作" },
+    { "from": 298, "to": 500, "label": "分類 + 估算" },
+    { "from": 518, "to": 650, "label": "給數字" }
+  ],
+  "messages": [
+    { "id": "m1", "from": "person", "to": "skill", "y": 180, "label": "幫我估引體 PR", "variant": "emphasis" },
+    { "id": "m2", "from": "skill", "to": "page", "y": 218, "label": "不排整週 → 估 PR", "variant": "emphasis" },
+    { "id": "m3", "from": "page", "to": "person", "y": 256, "label": "類型 B：體重？", "variant": "security" },
+    { "id": "m4", "from": "person", "to": "page", "y": 294, "label": "體重 + 近期組", "variant": "return" },
+    { "id": "m5", "from": "page", "to": "cls", "y": 348, "label": "classify(引體)", "variant": "emphasis" },
+    { "id": "m6", "from": "cls", "to": "page", "y": 386, "label": "類型 B", "variant": "return" },
+    { "id": "m7", "from": "page", "to": "calc", "y": 432, "label": "e1RM 打在 L", "variant": "emphasis" },
+    { "id": "m8", "from": "calc", "to": "page", "y": 470, "label": "掛重 = L − BW", "variant": "return" },
+    { "id": "m9", "from": "page", "to": "person", "y": 540, "label": "保守值 + 範圍", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "skill", "from": 175, "to": 230, "type": "frontend" },
+    { "participant": "page", "from": 213, "to": 546, "type": "frontend" },
+    { "participant": "cls", "from": 343, "to": 392, "type": "backend" },
+    { "participant": "calc", "from": 427, "to": 476, "type": "backend" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "公式維持",
+      "items": [
+        "P 用 RPE 表；B 打在 L；I 只測最大秒。沒有更好的專屬算法"
+      ]
+    }
+  ]
+}

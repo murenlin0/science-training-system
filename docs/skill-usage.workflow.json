@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "開口之後走哪條門",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "six",
+        "label": "六個功能",
+        "focus": ["say", "split", "six"],
+        "note": "估 PR、改表、排課、諮詢、GPP、當日。各讀一頁。"
+      },
+      {
+        "id": "lit",
+        "label": "文獻進層",
+        "focus": ["say", "split", "layer"],
+        "note": "先判層再改檔。沒有爬蟲。"
+      },
+      {
+        "id": "gate",
+        "label": "未答主項",
+        "focus": ["split", "six", "halt"],
+        "note": "排課未答主項就停。無預設動作。"
+      }
+    ]
+  },
+  "lanes": [
+    { "id": "who", "label": "使用者" },
+    { "id": "route", "label": "路由" },
+    { "id": "pages", "label": "工作流" },
+    { "id": "docs", "label": "文獻" },
+    { "id": "block", "label": "擋下", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "open", "label": "開口", "fromCol": 0, "toCol": 1 },
+    { "id": "fork", "label": "分流", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "in", "label": "進頁", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "mainPath": ["say", "split", "six"],
+  "nodes": [
+    { "id": "say", "lane": "who", "col": 0, "width": 72, "type": "external", "label": "開口", "sublabel": "七種意圖" },
+    { "id": "split", "lane": "route", "col": 2, "width": 72, "type": "frontend", "label": "SKILL 分流", "sublabel": "只讀一頁", "tag": "v0.2.0" },
+    { "id": "six", "lane": "pages", "col": 4, "width": 80, "type": "frontend", "label": "六頁齊", "sublabel": "一頁一功能" },
+    { "id": "layer", "lane": "docs", "col": 4, "width": 72, "type": "frontend", "label": "文獻判層", "sublabel": "literature-update" },
+    { "id": "halt", "lane": "block", "col": 5, "width": 72, "type": "security", "label": "未答停排", "sublabel": "無預設動作" }
+  ],
+  "edges": [
+    { "from": "say", "to": "split", "label": "意圖", "variant": "emphasis" },
+    { "from": "split", "to": "six", "label": "功能", "variant": "emphasis" },
+    { "from": "split", "to": "layer", "label": "文獻", "role": "branch" },
+    { "from": "six", "to": "halt", "label": "排課未答", "variant": "security", "role": "error" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "七種開口",
+      "items": [
+        "六功能 + 文獻均已寫。未答主項不准排。類型 B 打在 L。GPP 不反向改主項"
+      ]
+    }
+  ]
+}

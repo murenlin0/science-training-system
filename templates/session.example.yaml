@@ -1,0 +1,17 @@
+# 複製到 user/session.yaml。不要把真名寫進倉庫。
+week_label: 第1周
+opened_on: null
+days:
+  - n: 1
+    lifts:
+      - key: ohp
+        name: 站姿嚴格肩推
+        sets:
+          - {goal: "35×5 @8", done: null, mark: wait}
+          - {goal: "32.5×5 @7", done: null, mark: wait}
+        last_week: []
+      - key: planche
+        name: 團身俄挺
+        sets:
+          - {goal: "測 max_hold_s", done: null, mark: wait}
+        last_week: []

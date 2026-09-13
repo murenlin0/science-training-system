@@ -1,0 +1,543 @@
+# L2 菜單：選完主項後只讀對應 key。不是 L1。
+# 選動作的原則是 L1-SPECIFICITY。
+# 「必須用特殊動作才會漲」已拒絕（REJ-WESTSIDE-SPECIAL-EX）。
+#
+# 每筆動作：
+#   support  文獻實際撐到哪一層
+#     principle  只有 L1 類主張（專項性／孤立可練肌肥大／器材等效）
+#     class      論文講的是這一類刺激（等長 %MVC、力竭 meta、引體 VL）
+#     exercise   論文量過這個（或緊鄰同名）動作
+#     biomech    力學／模型，不是訓練試驗
+#     coach      教練書／體系
+#   grade    對「點名這一項」的證據，不得高於 support
+#     A 只允許 support=exercise 且引用含 A 級
+#     B 允許 class / exercise / biomech
+#     C 教練點名，或只有原則撐「這類可以練」
+# ACSM 2026 不能把 face pull、划船、腿彎舉抬成 A。
+
+layer: L2
+role: keyed-menu
+not_a_principle: true
+
+primaries:
+  ohp:
+    literature: literature/assistance/ohp.md
+    forbid_as_accessory: [ohp]
+    principle_ids: [L1-SPECIFICITY, L1-FAILURE-NOT-REQUIRED]
+    citation_ids: [acsm2026, grgic2021, jts_smith]
+    supplemental:
+      - id: push_press
+        name_zh: 借力推
+        name_en: Push Press
+        why: 中段超負荷與爆發意圖；嚴格肩推卡在額頭至頭頂時用
+        when: mid_range
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: z_press
+        name_zh: 坐姿地板肩推
+        name_en: Z-Press
+        why: 去掉腿驅動，暴露核心與胸椎；起槓晃時用
+        when: start_or_stability
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: pin_press
+        name_zh: 暫停／銷釘肩推
+        name_en: Pause / Pin Overhead Press
+        why: 卡點高度做等長或暫停；力量輻射是教練推論
+        when: sticking_point
+        support: coach
+        grade: C
+        citation_ids: [westside_simmons]
+    accessory:
+      - id: leaning_cable_lateral
+        name_zh: 側傾 Cable 側平舉
+        name_en: Leaning Cable Lateral Raise
+        why: 中束 lengthened；單關節可接近力竭，主項不必
+        when: hypertrophy
+        support: class
+        grade: C
+        citation_ids: [acsm2026, grgic2021]
+        cite_warrant: "Grgic 撐的是輔助可近力竭，不是這條側平舉的 RCT"
+      - id: face_pull
+        name_zh: 面拉
+        name_en: Face Pull
+        why: 後束與肩袖；垂直推主項時補水平拉平衡
+        when: health
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: rotator_90_90
+        name_zh: 90/90 內外旋
+        name_en: 90/90 Internal & External Rotation
+        why: 熱身／肩袖劑量，不是漲 1RM 的主路
+        when: warmup
+        support: class
+        grade: C
+        citation_ids: [barbell_medicine]
+        cite_warrant: "BBM 是疼痛／適宜劑量框架，不是 90/90 試驗"
+      - id: overhead_tricep
+        name_zh: 過頭三頭伸展
+        name_en: Overhead Triceps Extension
+        why: 鎖定前最後幾公分常是三頭
+        when: lockout
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+
+  push_press:
+    literature: literature/assistance/ohp.md
+    forbid_as_accessory: [push_press]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026]
+    supplemental:
+      - id: ohp
+        name_zh: 站姿嚴格肩推
+        name_en: Standing Overhead Press
+        why: 借力推當主項時，嚴格推補上無腿驅動的專項
+        when: strict_strength
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: z_press
+        name_zh: 坐姿地板肩推
+        name_en: Z-Press
+        why: 軀幹剛性
+        when: stability
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+    accessory:
+      - id: face_pull
+        name_zh: 面拉
+        name_en: Face Pull
+        why: 肩後側平衡
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: split_jerk_prep
+        name_zh: 分腿承接／腳步練習
+        name_en: Jerk Footwork
+        why: 只有目標含上挺時才需要；純肌力可跳過
+        when: olympic_transfer
+        support: coach
+        grade: C
+        citation_ids: [nsca5th]
+
+  z_press:
+    literature: literature/assistance/ohp.md
+    forbid_as_accessory: [z_press]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026]
+    supplemental:
+      - id: ohp
+        name_zh: 站姿嚴格肩推
+        name_en: Standing Overhead Press
+        why: 地板坐姿當主項時，站姿才是多數人的轉移目標
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+    accessory:
+      - id: thoracic_extension
+        name_zh: 胸椎伸展
+        name_en: Thoracic Extension
+        why: 坐姿過頭常被胸椎卡住
+        support: coach
+        grade: C
+        citation_ids: [nsca5th]
+      - id: face_pull
+        name_zh: 面拉
+        name_en: Face Pull
+        why: 肩後側
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+
+  weighted_pullup:
+    literature: literature/assistance/weighted-pullup.md
+    forbid_as_accessory: [weighted_pullup, pullup]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026, sanchez_moreno2020, grgic2021]
+    supplemental:
+      - id: scapular_pullup
+        name_zh: 肩胛引體
+        name_en: Scapular Pull-up
+        why: 死掛啟動＝肩胛下壓
+        when: dead_hang
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+        cite_warrant: "Sánchez-Moreno 2020 是引體 VL／頻率，不是肩胛引體試驗"
+      - id: paused_pullup
+        name_zh: 中段暫停引體
+        name_en: Paused Pull-up
+        why: 下巴到槓一半卡住時加專項時間
+        when: mid_range
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: weighted_chinup
+        name_zh: 負重反手引體
+        name_en: Weighted Chin-up
+        why: 中段／收尾的肘屈補強；計同一垂直拉容量
+        when: mid_or_lockout
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+    accessory:
+      - id: barbell_row
+        name_zh: 槓鈴划船
+        name_en: Barbell Row
+        why: 水平拉才是輔助；垂直拉已是主項
+        when: always
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: straight_arm_pulldown
+        name_zh: 直臂下拉
+        name_en: Straight-Arm Pulldown
+        why: 背闊長槓桿，補啟動
+        when: dead_hang
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: face_pull
+        name_zh: 面拉
+        name_en: Face Pull
+        why: 收尾常缺肩後側／斜方中下
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: dead_hang
+        name_zh: 死懸垂
+        name_en: Dead Hang
+        why: 握力先於背闊時分開練；測 Top 若戴帶要標註
+        when: grip
+        support: coach
+        grade: C
+        citation_ids: [nsca5th]
+
+  pullup:
+    literature: literature/assistance/weighted-pullup.md
+    forbid_as_accessory: [pullup, weighted_pullup]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026, sanchez_moreno2020]
+    note: "與負重引體同一垂直拉帳。未能量掛重時輔助仍以水平拉為主。"
+    supplemental:
+      - id: scapular_pullup
+        name_zh: 肩胛引體
+        name_en: Scapular Pull-up
+        why: 啟動
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: chinup
+        name_zh: 反手引體
+        name_en: Chin-up
+        why: 肘屈變式，不是第二份正手主項
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+    accessory:
+      - id: barbell_row
+        name_zh: 槓鈴划船
+        name_en: Barbell Row
+        why: 水平拉
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: band_or_machine_assist
+        name_zh: 彈力帶／輔助機引體
+        name_en: Band- or Machine-Assisted Pull-up
+        why: 目標 L 低於體重時減重，不是亂加掛重百分比
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+
+  weighted_dip:
+    literature: literature/assistance/weighted-dip.md
+    forbid_as_accessory: [weighted_dip]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026]
+    supplemental:
+      - id: pause_dip
+        name_zh: 底部暫停雙槓
+        name_en: Paused Dip
+        why: 去掉反彈，練底部
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: close_grip_bench
+        name_zh: 窄握臥推
+        name_en: Close-Grip Bench Press
+        why: 三頭與鎖定；若臥推也是主項則改過頭伸展
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+    accessory:
+      - id: overhead_tricep
+        name_zh: 過頭三頭伸展
+        name_en: Overhead Triceps Extension
+        why: 長頭
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: ring_support
+        name_zh: 雙槓／吊環支撐
+        name_en: Support Hold
+        why: 鎖肘穩定
+        support: coach
+        grade: C
+        citation_ids: [overcoming_gravity]
+
+  planche:
+    literature: literature/assistance/planche.md
+    forbid_as_accessory: [planche]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [overcoming_gravity, lum2019, oranchuk2019, miller2005, wang_shan2023, rosaci2025, scharer2015]
+    knowledge_gap: "沒有地板俄挺週期化 RCT。Rosaci 是吊環 support scale 的急性 EMG；Wang & Shan 是力學模型。"
+    supplemental:
+      - id: planche_lean
+        name_zh: 俄挺傾斜
+        name_en: Planche Lean
+        why: 限制因子常是肩前傾角度與腕控，不是臥推力量
+        when: protraction
+        support: biomech
+        grade: B
+        citation_ids: [wang_shan2023, overcoming_gravity]
+      - id: scapular_pushup
+        name_zh: 肩胛前伸伏地挺身
+        name_en: Scapular Push-up
+        why: 練 protraction／前鋸；吊環 planche EMG 前鋸參與高
+        support: class
+        grade: B
+        citation_ids: [rosaci2025, overcoming_gravity]
+        cite_warrant: "Rosaci 量的是吊環 hold 的前鋸，不是這個伏地變式的訓練試驗"
+      - id: straight_arm_support
+        name_zh: 直臂支撐
+        name_en: Straight-Arm Support Hold
+        why: 鎖肘不抖
+        support: coach
+        grade: C
+        citation_ids: [overcoming_gravity]
+      - id: feet_supported_planche
+        name_zh: 腳撐俄挺
+        name_en: Feet-Supported Planche
+        why: 吊環 EMG：腳撐版二頭／三頭比最接近本動作；地板用來練位置、減槓桿
+        when: technique
+        support: exercise
+        grade: B
+        citation_ids: [rosaci2025]
+        cite_warrant: "Rosaci SSSF 在吊環上做。地板腳撐是同構減載，不是同一試驗"
+      - id: straight_arm_front_raise
+        name_zh: 直臂前舉（站姿或躺姿啞鈴）
+        name_en: Straight-Arm Front Raise
+        why: 肩屈／前三角。吊環 EMG 站姿直臂啞鈴整體興奮較接近 support scale；未穩定前不要在俄挺上掛重
+        when: shoulder_flexion
+        support: exercise
+        grade: B
+        citation_ids: [rosaci2025, overcoming_gravity]
+    accessory:
+      - id: l_sit
+        name_zh: L-sit
+        name_en: L-sit
+        why: 抗伸展；腰椎塌就先補這個
+        support: coach
+        grade: C
+        citation_ids: [overcoming_gravity]
+      - id: hip_openers
+        name_zh: 髖屈伸展／分腿前傾
+        name_en: Couch Stretch / Straddle Pancake
+        why: 團身→分腿常卡髖，不是力不夠
+        support: coach
+        grade: C
+        citation_ids: [overcoming_gravity]
+      - id: wrist_prep
+        name_zh: 手腕預備
+        name_en: Wrist Prep
+        why: 腕是俄挺關鍵控制點；伸腕承重不是裝飾熱身
+        support: biomech
+        grade: B
+        citation_ids: [wang_shan2023, overcoming_gravity]
+      - id: crow_to_lean
+        name_zh: 倒立虎式接到俄挺傾斜
+        name_en: Crow Pose to Planche Lean
+        why: 抗伸展進到前傾的橋樑
+        support: coach
+        grade: C
+        citation_ids: [overcoming_gravity]
+
+  front_lever:
+    literature: literature/assistance/front-lever.md
+    forbid_as_accessory: [front_lever]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [overcoming_gravity, lum2019]
+    knowledge_gap: "沒有前水平週期化 RCT。等長劑量文獻是 %MVC，不是 max-hold。"
+    supplemental:
+      - id: current_rung_hold
+        name_zh: 當前階梯 hold（不要跳階）
+        name_en: Current-rung Front Lever Hold
+        why: 專項就是該階 hold；輔助不要另開一個全水平假裝主項
+        support: principle
+        grade: C
+        citation_ids: [overcoming_gravity, acsm2026]
+      - id: scapular_pullup
+        name_zh: 肩胛引體
+        name_en: Scapular Pull-up
+        why: 下壓與直臂肩胛控制
+        support: coach
+        grade: C
+        citation_ids: [overcoming_gravity]
+    accessory:
+      - id: straight_arm_pulldown
+        name_zh: 直臂下拉
+        name_en: Straight-Arm Pulldown
+        why: 背闊長槓桿
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: hanging_leg_raise
+        name_zh: 懸垂舉腿
+        name_en: Hanging Leg Raise
+        why: 抗伸展／髖屈
+        support: coach
+        grade: C
+        citation_ids: [overcoming_gravity]
+
+  squat:
+    literature: literature/assistance/squat.md
+    forbid_as_accessory: [squat]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026, jts_smith]
+    supplemental:
+      - id: paused_squat
+        name_zh: 暫停深蹲
+        name_en: Paused Squat
+        why: 去牽張反射，底部專項
+        when: bottom
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: front_squat
+        name_zh: 前蹲
+        name_en: Front Squat
+        why: 更直立、股四頭與上背；膝蓋上方卡住時
+        when: mid_quad
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+    accessory:
+      - id: rdl
+        name_zh: 羅馬尼亞硬舉
+        name_en: Romanian Deadlift
+        why: 後鏈；不要再疊一份全程深蹲當輔助
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: split_squat
+        name_zh: 分腿蹲
+        name_en: Split Squat
+        why: 單側、少軸向負荷
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: leg_curl
+        name_zh: 腿彎舉
+        name_en: Leg Curl
+        why: 膕繩孤立；器材等效是原則，不是「必須腿彎舉」
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+
+  bench:
+    literature: literature/assistance/bench.md
+    forbid_as_accessory: [bench]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026, jts_smith]
+    supplemental:
+      - id: paused_bench
+        name_zh: 暫停臥推
+        name_en: Paused Bench
+        why: 比賽臥推最直接的底部控制
+        when: bottom
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: close_grip_bench
+        name_zh: 窄握臥推
+        name_en: Close-Grip Bench Press
+        why: 鎖定／三頭
+        when: lockout
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+    accessory:
+      - id: db_or_floor_press
+        name_zh: 啞鈴臥推或地板推
+        name_en: Dumbbell Press / Floor Press
+        why: 肩角與行程可調；器材等效是原則
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: face_pull
+        name_zh: 面拉
+        name_en: Face Pull
+        why: 水平推主項時補後側
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: tricep_extension
+        name_zh: 三頭伸展
+        name_en: Triceps Extension
+        why: 鎖定短板
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+
+  deadlift:
+    literature: literature/assistance/deadlift.md
+    forbid_as_accessory: [deadlift]
+    principle_ids: [L1-SPECIFICITY]
+    citation_ids: [acsm2026, jts_smith]
+    note: "不要用第二份全程硬舉堆量。暫停／deficit 是短板工具，CNS 成本高。"
+    supplemental:
+      - id: rdl
+        name_zh: 羅馬尼亞硬舉
+        name_en: Romanian Deadlift
+        why: 後鏈容量，不是第二個離地硬舉
+        when: volume
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: paused_or_deficit
+        name_zh: 暫停或 Deficit 硬舉（擇一、少量）
+        name_en: Paused or Deficit Deadlift
+        why: 離地困難時的專項；禁止當容量堆疊
+        when: off_floor
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+    accessory:
+      - id: row
+        name_zh: 划船
+        name_en: Row
+        why: 上背／水平拉
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]
+      - id: back_extension
+        name_zh: 反向伸展／山羊挺身
+        name_en: Back Extension
+        why: 低軸向的後鏈
+        support: coach
+        grade: C
+        citation_ids: [jts_smith]
+      - id: trap_bar_substitute
+        name_zh: 六角槓硬舉（替代，不是加碼）
+        name_en: Trap-Bar Deadlift
+        why: 下背不適時的主項替代；轉移有限
+        when: substitute
+        support: principle
+        grade: C
+        citation_ids: [acsm2026]

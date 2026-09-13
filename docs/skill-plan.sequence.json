@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "排課一次（類型 B）",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "ask",
+        "label": "先問主項",
+        "focus": ["person", "skill", "plan"],
+        "note": "沒答完就停。禁止套預設動作。"
+      },
+      {
+        "id": "lookup",
+        "label": "分類再查表",
+        "focus": ["plan", "cls", "menu"],
+        "note": "輔助只查已選 key。"
+      },
+      {
+        "id": "bload",
+        "label": "類型 B 算掛重",
+        "focus": ["plan", "load", "person"],
+        "note": "百分比打在 L。輸出掛重 = 目標 L − 體重。"
+      }
+    ]
+  },
+  "participants": [
+    { "id": "person", "type": "external", "label": "使用者", "sublabel": "本次對話" },
+    { "id": "skill", "type": "frontend", "label": "SKILL.md", "sublabel": "分流" },
+    { "id": "plan", "type": "frontend", "label": "design-plan", "sublabel": "現有一頁" },
+    { "id": "cls", "type": "backend", "label": "classify.py", "sublabel": "P / B / I" },
+    { "id": "menu", "type": "database", "label": "assistance", "sublabel": "keyed 表" },
+    { "id": "load", "type": "backend", "label": "load.py", "sublabel": "禁止手算 B" }
+  ],
+  "segments": [
+    { "from": 150, "to": 295, "label": "問主項" },
+    { "from": 315, "to": 505, "label": "分類 + 查表" },
+    { "from": 525, "to": 700, "label": "算負荷 + 確認" }
+  ],
+  "messages": [
+    { "id": "p1", "from": "person", "to": "skill", "y": 180, "label": "幫我排課", "variant": "emphasis" },
+    { "id": "p2", "from": "skill", "to": "plan", "y": 218, "label": "讀 design-plan.md", "variant": "emphasis" },
+    { "id": "p3", "from": "plan", "to": "person", "y": 256, "label": "主項是哪些？", "variant": "security" },
+    { "id": "p4", "from": "person", "to": "plan", "y": 294, "label": "本次宣告：引體／肩推／俄挺", "variant": "return" },
+    { "id": "p5", "from": "plan", "to": "cls", "y": 348, "label": "classify(keys)", "variant": "emphasis" },
+    { "id": "p6", "from": "cls", "to": "plan", "y": 386, "label": "B / P / I", "variant": "return" },
+    { "id": "p7", "from": "plan", "to": "menu", "y": 424, "label": "for_primaries", "variant": "emphasis" },
+    { "id": "p8", "from": "menu", "to": "plan", "y": 462, "label": "菜單 + support／grade", "variant": "return" },
+    { "id": "p9", "from": "plan", "to": "load", "y": 532, "label": "L = BW + added", "variant": "emphasis" },
+    { "id": "p10", "from": "load", "to": "plan", "y": 570, "label": "掛重 = 目標 L − BW", "variant": "return" },
+    { "id": "p11", "from": "plan", "to": "person", "y": 618, "label": "複述主項 + 輔助候選", "variant": "emphasis" },
+    { "id": "p12", "from": "person", "to": "plan", "y": 656, "label": "確認後才出完整表", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "skill", "from": 175, "to": 230, "type": "frontend" },
+    { "participant": "plan", "from": 213, "to": 662, "type": "frontend" },
+    { "participant": "cls", "from": 343, "to": 392, "type": "backend" },
+    { "participant": "menu", "from": 419, "to": 468, "type": "database" },
+    { "participant": "load", "from": 527, "to": 576, "type": "backend" }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "這次模擬",
+      "items": [
+        "圖中三個動作是一次宣告，不是預設。類型 B 百分比打在 L"
+      ]
+    }
+  ]
+}

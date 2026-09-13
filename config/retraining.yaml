@@ -1,0 +1,15 @@
+# L2 回訓覆寫。塊中途不改。
+# 使用者處於回訓期：舊 1RM 與舊 block 進度作廢。
+
+layer: L2
+profile: retraining
+legacy_baselines: void
+use_population_defaults: true
+use_personal_history_1rm: false
+use_personal_block_progress: false
+
+overrides:
+  start_conservative: true
+  first_block_source: "literature population defaults in parameters.yaml"
+  e1rm_seed: null
+  note: "第一塊用族群預設起跳。塊結束後才允許用自有資料改 L2。"

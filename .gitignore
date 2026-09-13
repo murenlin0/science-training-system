@@ -1,0 +1,10 @@
+user/
+graphify-out/
+.pytest_cache/
+__pycache__/
+*.pyc
+.venv/
+venv/
+docs/*.html
+docs/*.visual-check.*
+docs/*contact-sheet*

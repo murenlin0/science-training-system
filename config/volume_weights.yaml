@@ -1,0 +1,25 @@
+# 可改。預設對齊 Pelland：直接 ≈1.0、協同 ≈0.5。
+# 沒列到的動作：該組不計入 Volume（不要瞎猜）。
+
+citation_ids: [pelland2026]
+default_direct: 1.0
+default_synergist: 0.5
+
+movements:
+  squat: [{m: 股四, w: 1.0}, {m: 臀, w: 0.5}, {m: 股二, w: 0.5}]
+  bench: [{m: 胸, w: 1.0}, {m: 三頭, w: 0.5}, {m: 前三角, w: 0.5}]
+  deadlift: [{m: 股二, w: 1.0}, {m: 臀, w: 1.0}, {m: 背闊, w: 0.5}, {m: 斜方, w: 0.5}]
+  ohp: [{m: 前三角, w: 1.0}, {m: 三頭, w: 0.5}]
+  push_press: [{m: 前三角, w: 1.0}, {m: 三頭, w: 0.5}]
+  z_press: [{m: 前三角, w: 1.0}, {m: 腹, w: 0.5}]
+  pullup: [{m: 背闊, w: 1.0}, {m: 二頭, w: 0.5}]
+  weighted_pullup: [{m: 背闊, w: 1.0}, {m: 二頭, w: 0.5}]
+  weighted_dip: [{m: 胸, w: 1.0}, {m: 三頭, w: 0.5}]
+  planche: [{m: 前三角, w: 1.0}, {m: 二頭, w: 0.5}]
+  front_lever: [{m: 背闊, w: 1.0}, {m: 二頭, w: 0.5}]
+  lateral_raise: [{m: 側三角, w: 1.0}]
+  barbell_curl: [{m: 二頭, w: 1.0}]
+  hammer_curl: [{m: 二頭, w: 1.0}]
+  cable_external_rotation: [{m: 後三角, w: 0.5}]
+  face_pull: [{m: 後三角, w: 1.0}, {m: 上背, w: 0.5}]
+  leaning_cable_lateral: [{m: 側三角, w: 1.0}]

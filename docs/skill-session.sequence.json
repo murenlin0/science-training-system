@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "當日指揮（回報一組）",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "align",
+        "label": "開練對齊今天",
+        "focus": ["person", "day", "sheet"],
+        "note": "說用存檔才讀 user/plan.md。不要套預設動作。"
+      },
+      {
+        "id": "delta",
+        "label": "只改今天剩下的",
+        "focus": ["person", "day", "load"],
+        "note": "Δ = 實際 RPE − 目標。類型 B 走 load.py。"
+      },
+      {
+        "id": "close",
+        "label": "收工或切走",
+        "focus": ["person", "day", "sheet"],
+        "note": "點頭才寫 user/log.md。整週問題切改計畫。"
+      }
+    ]
+  },
+  "participants": [
+    { "id": "person", "type": "external", "label": "使用者", "sublabel": "正在練" },
+    { "id": "day", "type": "frontend", "label": "session-adjust", "sublabel": "現有一頁" },
+    { "id": "sheet", "type": "database", "label": "user/ 課表日誌", "sublabel": "gitignore" },
+    { "id": "load", "type": "backend", "label": "load.py", "sublabel": "下一組" }
+  ],
+  "segments": [
+    { "from": 150, "to": 280, "label": "開練" },
+    { "from": 298, "to": 520, "label": "回報 → 下一組" },
+    { "from": 538, "to": 680, "label": "收工" }
+  ],
+  "messages": [
+    { "id": "s1", "from": "person", "to": "day", "y": 180, "label": "開練", "variant": "emphasis" },
+    { "id": "s2", "from": "day", "to": "sheet", "y": 218, "label": "讀今日課表", "variant": "emphasis" },
+    { "id": "s3", "from": "sheet", "to": "day", "y": 256, "label": "動作／組／目標 RPE", "variant": "return" },
+    { "id": "s4", "from": "person", "to": "day", "y": 330, "label": "引體 +12.5×5 @8", "variant": "emphasis" },
+    { "id": "s5", "from": "day", "to": "load", "y": 382, "label": "Δ 後下一組打在 L", "variant": "emphasis" },
+    { "id": "s6", "from": "load", "to": "day", "y": 452, "label": "掛重 = 目標 L − BW", "variant": "return" },
+    { "id": "s7", "from": "day", "to": "person", "y": 498, "label": "下一組 + 還剩幾組", "variant": "return" },
+    { "id": "s8", "from": "person", "to": "day", "y": 560, "label": "收工", "variant": "dashed" },
+    { "id": "s9", "from": "day", "to": "sheet", "y": 598, "label": "點頭才追加日誌", "variant": "dashed" },
+    { "id": "s10", "from": "day", "to": "person", "y": 636, "label": "今日摘要", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "day", "from": 175, "to": 642, "type": "frontend" },
+    { "participant": "sheet", "from": 213, "to": 262, "type": "database" },
+    { "participant": "load", "from": 409, "to": 458, "type": "backend" },
+    { "participant": "sheet", "from": 593, "to": 610, "type": "database" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "組中不動整週",
+      "items": [
+        "只改今天剩下的。類型 B 走 load.py。整週切改計畫"
+      ]
+    }
+  ]
+}

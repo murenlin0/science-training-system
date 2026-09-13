@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "GPP／只要有氧",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "views": [
+      {
+        "id": "door",
+        "label": "先判哪扇門",
+        "focus": ["person", "skill", "cond"],
+        "note": "只要體能走這裡。力量計畫附帶有氧仍走排課。"
+      },
+      {
+        "id": "hr",
+        "label": "心率用 Karvonen",
+        "focus": ["cond", "hrfn"],
+        "note": "%HRR。禁止 220−年齡。"
+      },
+      {
+        "id": "cut",
+        "label": "衝突砍 GPP",
+        "focus": ["cond", "l1", "person"],
+        "note": "有氧只填剩餘預算。超限砍 GPP。"
+      }
+    ]
+  },
+  "participants": [
+    { "id": "person", "type": "external", "label": "使用者", "sublabel": "只要體能" },
+    { "id": "skill", "type": "frontend", "label": "SKILL.md", "sublabel": "分流" },
+    { "id": "cond", "type": "frontend", "label": "conditioning-plan", "sublabel": "現有一頁" },
+    { "id": "hrfn", "type": "backend", "label": "karvonen.py", "sublabel": "現有計算" },
+    { "id": "l1", "type": "security", "label": "L1 原則", "sublabel": "不反向改主項" }
+  ],
+  "segments": [
+    { "from": 150, "to": 270, "label": "判門" },
+    { "from": 288, "to": 480, "label": "算心率" },
+    { "from": 498, "to": 650, "label": "對齊主項" }
+  ],
+  "messages": [
+    { "id": "g1", "from": "person", "to": "skill", "y": 180, "label": "幫我安排有氧", "variant": "emphasis" },
+    { "id": "g2", "from": "skill", "to": "cond", "y": 218, "label": "只要體能 → GPP", "variant": "emphasis" },
+    { "id": "g3", "from": "cond", "to": "person", "y": 256, "label": "安靜心率／實測 HRmax？", "variant": "security" },
+    { "id": "g4", "from": "person", "to": "cond", "y": 294, "label": "給兩個心率", "variant": "return" },
+    { "id": "g5", "from": "cond", "to": "hrfn", "y": 348, "label": "karvonen(%HRR)", "variant": "emphasis" },
+    { "id": "g6", "from": "hrfn", "to": "cond", "y": 386, "label": "目標心率區間", "variant": "return" },
+    { "id": "g7", "from": "cond", "to": "l1", "y": 448, "label": "有主項嗎？", "variant": "security" },
+    { "id": "g8", "from": "l1", "to": "cond", "y": 486, "label": "超限砍 GPP", "variant": "return" },
+    { "id": "g9", "from": "cond", "to": "person", "y": 548, "label": "處方；主項不動", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "skill", "from": 175, "to": 230, "type": "frontend" },
+    { "participant": "cond", "from": 213, "to": 554, "type": "frontend" },
+    { "participant": "hrfn", "from": 343, "to": 392, "type": "backend" },
+    { "participant": "l1", "from": 443, "to": 492, "type": "security" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "主項不動",
+      "items": [
+        "Karvonen，禁止 220−年齡。衝突砍 GPP"
+      ]
+    }
+  ]
+}
