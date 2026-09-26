@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `board.yaml` 支援 list schema（`days[].exercises`、`active_day: dayN`）與既有 dict schema 並存。
 - `python -m core.session_cli`：`open-day`／`skip-day`／`log-set`／`volume`，從 `user/board.yaml` 管線化當日紀錄與 Volume 頁腳。
 - Volume 頁腳改為 `Volume Landmark區` 標題＋一肌群一行；`ALLOWED_MUSCLES` 過濾非法肌群權重。
 - Skill 路由：開練／跳過／回報組先呼叫 CLI，再在 `session-adjust.md` 做 Δ 自調。
