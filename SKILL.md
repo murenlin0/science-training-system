@@ -1,7 +1,7 @@
 ---
 name: science-training-system
 description: 科學力量訓練——先問主項，再按四層規則排課。選完主項只讀該 key 的輔助對照表。類型 B 百分比打在總系統負荷。無預設動作組。
-version: 0.3.2
+version: 0.3.3
 ---
 
 # Science-training-system
@@ -19,7 +19,7 @@ version: 0.3.2
 | 排完整計畫 | `workflows/design-plan.md` |
 | 問為什麼／怎麼／應該 | `workflows/consult.md` |
 | 只要體能／GPP | `workflows/conditioning-plan.md` |
-| 開練／回報組／下一組／紀錄格式 | `workflows/session-adjust.md` + `workflows/logging.md` |
+| 開練／跳過日／回報組／下一組／紀錄格式 | **先** `python -m core.session_cli`（`open-day`／`skip-day`／`log-set`／`volume`）→ 再 `workflows/session-adjust.md`（Δ／自調）+ `workflows/logging.md`（版面） |
 | 文獻要不要進層 | `workflows/literature-update.md` |
 | 算重量／掛重／等長秒 | `core/load.py`（禁止手算類型 B） |
 | 選完主項要輔助 | `config/assistance.yaml` → `core/assistance.py` |

@@ -13,6 +13,12 @@ _WEIGHTS = None
 
 DOT = {"below": "⚪", "mev": "🟢", "mav": "🔵", "mrv": "🟠", "over": "🔴"}
 
+# 寫死：Volume 頁腳／權重唯一允許的肌群名。改清單須使用者明確同意。
+ALLOWED_MUSCLES = frozenset({
+    "前三角", "中三角", "後三角", "胸", "背闊", "二頭", "三頭",
+    "股四", "股二", "臀", "小腿", "腹",
+})
+
 
 def reset_cache() -> None:
     global _MARK, _WEIGHTS
@@ -52,6 +58,12 @@ def _load():
             if _valid_weights(overlay):
                 weight_data = overlay
 
+        muscles = mark_data.get("muscles") or {}
+        mark_data["muscles"] = {k: v for k, v in muscles.items() if k in ALLOWED_MUSCLES}
+        for key, rows in list((weight_data.get("movements") or {}).items()):
+            weight_data["movements"][key] = [
+                r for r in rows if r.get("m") in ALLOWED_MUSCLES
+            ]
         _MARK = mark_data
         _WEIGHTS = weight_data
     return _MARK, _WEIGHTS
@@ -59,7 +71,7 @@ def _load():
 
 def weights_for(key: str) -> list[tuple[str, float]]:
     data = _load()[1]["movements"].get(key) or []
-    return [(row["m"], float(row["w"])) for row in data]
+    return [(row["m"], float(row["w"])) for row in data if row.get("m") in ALLOWED_MUSCLES]
 
 
 def add_sets(bucket: dict[str, float], key: str, n: float) -> None:
@@ -89,7 +101,8 @@ def _span(spec: dict) -> float:
 
 def format_landmarks(done: dict[str, float], weekly: dict[str, float]) -> str:
     marks, _ = _load()
-    lines = list(marks["header"])
+    lines = ["Volume Landmark區"]
+    lines.extend(marks["header"])
     rows = []
     for name, spec in marks["muscles"].items():
         w = weekly.get(name, 0.0)
@@ -98,5 +111,61 @@ def format_landmarks(done: dict[str, float], weekly: dict[str, float]) -> str:
         rng = f"{spec['mev'][0]:g}–{spec['mev'][1]:g}/{spec['mav'][0]:g}–{spec['mav'][1]:g}/{spec['mrv'][0]:g}–{spec['mrv'][1]:g}"
         rows.append((rel, f"{name} {rng}  {d:g}/{w:g}{DOT[band(name, w)]}"))
     rows.sort(key=lambda r: -r[0])
-    lines.append("　".join(r[1] for r in rows))
+    lines.extend(r[1] for r in rows)
     return "\n".join(lines)
+
+
+def _count_lift_sets(
+    lift: dict,
+    *,
+    for_weekly: bool,
+) -> tuple[float, float]:
+    """Return (done_equiv_sets, weekly_equiv_sets) for one lift row on the board."""
+    key = lift.get("key") or ""
+    if not weights_for(key):
+        return 0.0, 0.0
+
+    sets = lift.get("sets") or []
+    logged = sum(
+        1
+        for s in sets
+        if s.get("mark") in ("ok", "warn", "fix", "miss") or s.get("done")
+    )
+    if lift.get("skipped") and logged == 0:
+        return 0.0, 0.0
+
+    if for_weekly:
+        planned = float(len(sets))
+    else:
+        planned = 0.0
+
+    done = float(
+        sum(1 for s in sets if s.get("mark") in ("ok", "warn", "fix"))
+    )
+    return done, planned
+
+
+def tally_from_board(board: dict) -> tuple[dict[str, float], dict[str, float]]:
+    """
+    Weekly denominator = planned sets on all microcycle days on the board.
+    Skip-day: unfinished sets on partially logged lifts still count.
+    Exercise skipped before any logged set → exclude its planned sets.
+    """
+    done: dict[str, float] = {}
+    weekly: dict[str, float] = {}
+    cycle = board.get("microcycle_days")
+    days = board.get("days") or {}
+    day_keys = [str(d) for d in cycle] if cycle else list(days.keys())
+
+    for dk in day_keys:
+        block = days.get(dk) or {}
+        lifts = block.get("lifts") or block.get("exercises") or []
+        for raw in lifts:
+            lift = raw if isinstance(raw, dict) else {}
+            d_n, w_n = _count_lift_sets(lift, for_weekly=True)
+            key = lift.get("key") or ""
+            if w_n:
+                add_sets(weekly, key, w_n)
+            if d_n:
+                add_sets(done, key, d_n)
+    return done, weekly

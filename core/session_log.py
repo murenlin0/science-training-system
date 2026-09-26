@@ -109,11 +109,16 @@ def tally_week(data: dict) -> tuple[dict[str, float], dict[str, float]]:
     return done, week
 
 
-def format_lift(lift: dict, highlight: int | None = None) -> str:
+def format_lift(
+    lift: dict,
+    highlight: int | None = None,
+    *,
+    last_week_heading: str = "上周",
+) -> str:
     name = lift.get("name") or lift.get("key") or "動作"
     ws = weights_for(lift.get("key") or "")
     wline = " ".join(f"{m}{w:g}" for m, w in ws)
-    rows = ["| 目標 | 今日 | 上周 |", "|------|------|------|"]
+    rows = [f"| 目標 | 這次 | {last_week_heading} |", "|------|------|------|"]
     last = lift.get("last_week") or []
     for i, s in enumerate(lift.get("sets") or []):
         mark = MARK.get(s.get("mark") or "wait", "⏳")
@@ -126,15 +131,78 @@ def format_lift(lift: dict, highlight: int | None = None) -> str:
     return block + "\n" + "\n".join(rows)
 
 
+def _lift_logged_count(lift: dict) -> int:
+    return sum(
+        1
+        for s in lift.get("sets") or []
+        if s.get("mark") in ("ok", "warn", "fix", "miss") or s.get("done")
+    )
+
+
+def _lift_sort_state(lift: dict) -> str:
+    sets = lift.get("sets") or []
+    if not sets:
+        return "pending"
+    if lift.get("skipped") and _lift_logged_count(lift) == 0:
+        return "skipped"
+    done_n = sum(1 for s in sets if s.get("mark") in ("ok", "warn", "fix", "miss"))
+    if done_n >= len(sets):
+        return "done"
+    if done_n > 0:
+        return "in_progress"
+    if all(s.get("mark") == "skip" for s in sets):
+        return "done"
+    return "pending"
+
+
+def sort_lifts_board_order(lifts: list[dict]) -> list[dict]:
+    order = {"done": 0, "in_progress": 1, "pending": 2, "skipped": 3}
+    return sorted(lifts, key=lambda L: (order.get(_lift_sort_state(L), 9), L.get("name") or ""))
+
+
+def _last_week_heading(day: dict | None, board_last_week_day) -> str:
+    n = None
+    if day:
+        n = day.get("last_week_day")
+    if n is None:
+        n = board_last_week_day
+    if n is not None:
+        return f"上次 Day{n}"
+    return "上周"
+
+
 def format_day(data: dict, day_n: int, just: tuple[str, int] | None = None) -> str:
+    return format_day_board(data, day_n, sort_lifts=False, highlight=just)
+
+
+def format_day_board(
+    data: dict,
+    day_n: int,
+    *,
+    sort_lifts: bool = False,
+    highlight: tuple[str, int] | None = None,
+    board_for_volume: dict | None = None,
+) -> str:
+    from core.volume import tally_from_board
+
     day = next((d for d in data.get("days") or [] if d.get("n") == day_n), None)
     if not day:
         return "沒有這一天的紀錄。"
+    heading = _last_week_heading(day, data.get("last_week_day"))
     parts = [f"{data.get('week_label') or '本週'} · Day {day_n}"]
-    for lift in day.get("lifts") or []:
-        hi = just[1] if just and lift.get("key") == just[0] else None
-        parts.append(format_lift(lift, hi))
-    parts.append(format_landmarks(*tally_week(data)))
+    lifts = list(day.get("lifts") or [])
+    if sort_lifts:
+        lifts = sort_lifts_board_order(lifts)
+    for lift in lifts:
+        key = lift.get("key")
+        hi = None
+        if highlight and key == highlight[0]:
+            hi = highlight[1]
+        parts.append(format_lift(lift, hi, last_week_heading=heading))
+    if board_for_volume:
+        parts.append(format_landmarks(*tally_from_board(board_for_volume)))
+    else:
+        parts.append(format_landmarks(*tally_week(data)))
     return "\n\n".join(parts)
 
 

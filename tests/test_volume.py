@@ -25,8 +25,9 @@ def test_fractional_stack():
 
 def test_zero_is_below_and_listed():
     text = format_landmarks({}, {})
-    assert text.startswith("肌肥大地板")
-    assert "不當擋門" in text.splitlines()[1]
+    assert text.splitlines()[0] == "Volume Landmark區"
+    assert text.splitlines()[1].startswith("肌肥大地板")
+    assert "不當擋門" in text.splitlines()[2]
     assert "背闊" in text and "0/0⚪" in text
     assert band("背闊", 0) == "below"
 
@@ -37,7 +38,7 @@ def test_zero_weekly_below_even_when_mev_floor_is_zero():
 
 
 def test_new_movement_weights_load():
-    assert weights_for("barbell_row") == [("上背", 1.0), ("後三角", 0.5), ("二頭", 0.3)]
+    assert weights_for("barbell_row") == [("後三角", 0.5), ("二頭", 0.3)]
     assert weights_for("planche_lean") == [("前三角", 1.0), ("二頭", 0.5)]
 
 
@@ -98,8 +99,9 @@ def test_over_mrv_is_red():
 
 def test_sort_puts_heavier_relative_first():
     text = format_landmarks({"前三角": 6, "背闊": 0}, {"前三角": 6, "背闊": 0})
-    line = text.splitlines()[-1]
-    assert line.index("前三角") < line.index("背闊")
+    body = [ln for ln in text.splitlines() if ln.startswith("前三角") or ln.startswith("背闊")]
+    assert body[0].startswith("前三角")
+    assert body[1].startswith("背闊")
 
 
 def test_lift_table_one_row_per_set_no_bo_title():
@@ -141,7 +143,7 @@ def test_format_day_includes_volume_header():
         "days": [{"n": 1, "lifts": [{"key": "ohp", "name": "肩推", "sets": [{"goal": "x", "mark": "ok"}]}]}],
     }
     text = format_day(data, 1, just=("ohp", 0))
-    assert "肌肥大地板" in text
+    assert "Volume Landmark區" in text
     assert "肩推" in text
 
 
