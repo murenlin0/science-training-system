@@ -121,17 +121,20 @@ def _count_lift_sets(
     for_weekly: bool,
 ) -> tuple[float, float]:
     """Return (done_equiv_sets, weekly_equiv_sets) for one lift row on the board."""
-    key = lift.get("key") or ""
+    from core.board_io import normalize_exercise
+
+    norm = normalize_exercise(lift)
+    key = norm.get("key") or ""
     if not weights_for(key):
         return 0.0, 0.0
 
-    sets = lift.get("sets") or []
+    sets = norm.get("sets") or []
     logged = sum(
         1
         for s in sets
         if s.get("mark") in ("ok", "warn", "fix", "miss") or s.get("done")
     )
-    if lift.get("skipped") and logged == 0:
+    if norm.get("skipped") and logged == 0:
         return 0.0, 0.0
 
     if for_weekly:
@@ -151,21 +154,21 @@ def tally_from_board(board: dict) -> tuple[dict[str, float], dict[str, float]]:
     Skip-day: unfinished sets on partially logged lifts still count.
     Exercise skipped before any logged set → exclude its planned sets.
     """
+    from core.board_io import day_exercises_raw, iter_cycle_day_blocks
+
     done: dict[str, float] = {}
     weekly: dict[str, float] = {}
-    cycle = board.get("microcycle_days")
-    days = board.get("days") or {}
-    day_keys = [str(d) for d in cycle] if cycle else list(days.keys())
-
-    for dk in day_keys:
-        block = days.get(dk) or {}
-        lifts = block.get("lifts") or block.get("exercises") or []
-        for raw in lifts:
-            lift = raw if isinstance(raw, dict) else {}
-            d_n, w_n = _count_lift_sets(lift, for_weekly=True)
-            key = lift.get("key") or ""
+    for _n, block in iter_cycle_day_blocks(board):
+        for raw in day_exercises_raw(block):
+            if not isinstance(raw, dict):
+                continue
+            d_n, w_n = _count_lift_sets(raw, for_weekly=True)
+            key = raw.get("key") or raw.get("id") or ""
+            norm_key = key
+            if not weights_for(norm_key):
+                continue
             if w_n:
-                add_sets(weekly, key, w_n)
+                add_sets(weekly, norm_key, w_n)
             if d_n:
-                add_sets(done, key, d_n)
+                add_sets(done, norm_key, d_n)
     return done, weekly
