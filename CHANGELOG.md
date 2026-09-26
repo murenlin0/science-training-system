@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- `python -m core.session_cli`：`open-day`／`skip-day`／`log-set`／`volume`，從 `user/board.yaml` 管線化當日紀錄與 Volume 頁腳。
+- Volume 頁腳改為 `Volume Landmark區` 標題＋一肌群一行；`ALLOWED_MUSCLES` 過濾非法肌群權重。
+- Skill 路由：開練／跳過／回報組先呼叫 CLI，再在 `session-adjust.md` 做 Δ 自調。
+
 ## 0.3.2 — 2026-09-13
 
 - 當日真源改為 `user/session.html`。聊天表只是渲染，不從對話回推。舊 yaml 只在還沒有 html 時讀一次。
